@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Motorrad Guide Zypern – Drei kuratierte Routen durch Zypern mit GPS-Tracks, Insider-Tipps und Sicherheitshinweisen. Motorcycle Guide Cyprus." />
+  <title>Motorrad Guide Zypern | Motorcycle Guide Cyprus</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Fade-up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" aria-label="Main navigation">
+  <div class="navbar-inner">
+    <a class="navbar-logo" href="index.html">
+      <span class="logo-icon">🏍️</span>
+      <span>Zypern<strong>Guide</strong></span>
+    </a>
+
+    <ul class="navbar-nav" role="list">
+      <li><a class="nav-link" href="index.html" data-i18n="nav_home">Startseite</a></li>
+      <li><a class="nav-link" href="routen.html" data-i18n="nav_routes">Routen</a></li>
+      <li><a class="nav-link" href="sicherheit.html" data-i18n="nav_safety">Sicherheit</a></li>
+      <li><a class="nav-link" href="#buy" data-i18n="nav_buy">Kaufen</a></li>
+    </ul>
+
+    <div class="navbar-right">
+      <div class="lang-switcher" aria-label="Language switcher">
+        <button class="lang-btn active" data-lang="de" aria-label="Deutsch">DE</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      </div>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-placeholder"></div>
+  <div class="hero-overlay-pattern"></div>
+
+  <div class="hero-content container">
+    <div class="hero-badge" data-i18n="hero_badge">🏍️ Motorrad-Reiseführer · Zypern</div>
+
+    <h1 class="hero-title" data-i18n="hero_title">Motorrad Guide</h1>
+    <p class="hero-title-sub" data-i18n="hero_title_sub">Zypern entdecken</p>
+
+    <p class="hero-description" data-i18n="hero_desc">
+      Drei unvergessliche Routen durch das Troodos-Gebirge, entlang der Mittelmeerküste und durch antike Dörfer.
+    </p>
+
+    <div class="hero-actions">
+      <a href="routen.html" class="btn btn-primary btn-large" data-i18n="hero_btn_primary">Jetzt Routen entdecken</a>
+      <a href="#about" class="btn btn-secondary btn-large" data-i18n="hero_btn_secondary">Mehr erfahren</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-number" data-i18n="hero_stat1_num">3</div>
+        <div class="hero-stat-label" data-i18n="hero_stat1_label">Kuratierte Routen</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number" data-i18n="hero_stat2_num">650+</div>
+        <div class="hero-stat-label" data-i18n="hero_stat2_label">Kilometer</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number" data-i18n="hero_stat3_num">4.9★</div>
+        <div class="hero-stat-label" data-i18n="hero_stat3_label">Bewertung</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+    <span data-i18n="hero_scroll">Scrollen</span>
+    <div class="scroll-arrow">▼</div>
+  </div>
+</section>
+
+<!-- ===== INTRO STRIP ===== -->
+<div class="intro-strip" id="about">
+  <p data-i18n="intro_text">
+    Dieser Guide entstand aus echter Leidenschaft. Wir haben Zypern auf zwei Rädern erkundet, die besten Strecken gefunden und alles aufgeschrieben.
+  </p>
+</div>
+
+<!-- ===== ROUTE TEASERS ===== -->
+<section class="section-pad bg-beige" aria-labelledby="routes-heading">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label" data-i18n="routes_label">Die Routen</span>
+      <h2 class="section-title" id="routes-heading" data-i18n="routes_title">Drei Routen. Drei Erlebnisse.</h2>
+      <p class="section-subtitle centered" data-i18n="routes_subtitle">
+        Von der Küste bis ins Gebirge – jede Route ist ein eigenes Abenteuer.
+      </p>
+    </div>
+
+    <div class="routes-grid">
+
+      <!-- Route 1 -->
+      <article class="route-card fade-up">
+        <div class="route-card-image">
+          <div class="img-placeholder img-placeholder-1">
+            <div class="img-placeholder-inner">
+              <div class="img-placeholder-icon">🌊</div>
+              <div class="img-placeholder-text">Route 1 · South Coast</div>
+            </div>
+          </div>
+          <span class="route-badge" data-i18n="route1_badge">Küstenroute</span>
+        </div>
+        <div class="route-card-body">
+          <h3 class="route-card-title" data-i18n="route1_title">Die Südküste</h3>
+          <p class="route-card-desc" data-i18n="route1_desc">
+            Von Paphos nach Limassol entlang der Küste. Klares Wasser, antike Tempel und das beste Halloumi der Insel.
+          </p>
+          <div class="route-meta">
+            <div class="route-meta-item">
+              <span class="meta-icon">📍</span>
+              <span data-i18n="route_detail_dist">Distanz</span>:&nbsp;<strong data-i18n="route1_dist">185 km</strong>
+            </div>
+            <div class="route-meta-item">
+              <span class="meta-icon">🕐</span>
+              <span data-i18n="route_detail_time">Dauer</span>:&nbsp;<strong data-i18n="route1_time">1–2 Tage</strong>
+            </div>
+            <div class="route-meta-item">
+              <span class="meta-icon">📊</span>
+              <span data-i18n="route_detail_diff">Schwierigkeit</span>:&nbsp;
+              <div class="difficulty-dots" data-difficulty="2" aria-label="Difficulty 2 of 5"></div>
+            </div>
+          </div>
+          <a href="routen.html" class="btn btn-outline" data-i18n="route_btn_tease">Route ansehen →</a>
+        </div>
+      </article>
+
+      <!-- Route 2 -->
+      <article class="route-card fade-up">
+        <div class="route-card-image">
+          <div class="img-placeholder img-placeholder-2">
+            <div class="img-placeholder-inner">
+              <div class="img-placeholder-icon">⛰️</div>
+              <div class="img-placeholder-text">Route 2 · Troodos</div>
+            </div>
+          </div>
+          <span class="route-badge" data-i18n="route2_badge">Bergstrecke</span>
+        </div>
+        <div class="route-card-body">
+          <h3 class="route-card-title" data-i18n="route2_title">Troodos-Gipfelfahrt</h3>
+          <p class="route-card-desc" data-i18n="route2_desc">
+            Durch Zedernwälder auf den höchsten Berg Zyperns. Kurvenreiche Passstraßen und atemberaubende Aussichten.
+          </p>
+          <div class="route-meta">
+            <div class="route-meta-item">
+              <span class="meta-icon">📍</span>
+              <span data-i18n="route_detail_dist">Distanz</span>:&nbsp;<strong data-i18n="route2_dist">240 km</strong>
+            </div>
+            <div class="route-meta-item">
+              <span class="meta-icon">🕐</span>
+              <span data-i18n="route_detail_time">Dauer</span>:&nbsp;<strong data-i18n="route2_time">2 Tage</strong>
+            </div>
+            <div class="route-meta-item">
+              <span class="meta-icon">📊</span>
+              <span data-i18n="route_detail_diff">Schwierigkeit</span>:&nbsp;
+              <div class="difficulty-dots" data-difficulty="4" aria-label="Difficulty 4 of 5"></div>
+            </div>
+          </div>
+          <a href="routen.html" class="btn btn-outline" data-i18n="route_btn_tease">Route ansehen →</a>
+        </div>
+      </article>
+
+      <!-- Route 3 -->
+      <article class="route-card fade-up">
+        <div class="route-card-image">
+          <div class="img-placeholder img-placeholder-3">
+            <div class="img-placeholder-inner">
+              <div class="img-placeholder-icon">🏰</div>
+              <div class="img-placeholder-text">Route 3 · Cultural</div>
+            </div>
+          </div>
+          <span class="route-badge" data-i18n="route3_badge">Kulturroute</span>
+        </div>
+        <div class="route-card-body">
+          <h3 class="route-card-title" data-i18n="route3_title">Nordosten &amp; Famagusta</h3>
+          <p class="route-card-desc" data-i18n="route3_desc">
+            Byzantinische Kirchen, venezianische Burgen und das faszinierende geteilte Nikosia.
+          </p>
+          <div class="route-meta">
+            <div class="route-meta-item">
+              <span class="meta-icon">📍</span>
+              <span data-i18n="route_detail_dist">Distanz</span>:&nbsp;<strong data-i18n="route3_dist">220 km</strong>
+            </div>
+            <div class="route-meta-item">
+              <span class="meta-icon">🕐</span>
+              <span data-i18n="route_detail_time">Dauer</span>:&nbsp;<strong data-i18n="route3_time">2 Tage</strong>
+            </div>
+            <div class="route-meta-item">
+              <span class="meta-icon">📊</span>
+              <span data-i18n="route_detail_diff">Schwierigkeit</span>:&nbsp;
+              <div class="difficulty-dots" data-difficulty="3" aria-label="Difficulty 3 of 5"></div>
+            </div>
+          </div>
+          <a href="routen.html" class="btn btn-outline" data-i18n="route_btn_tease">Route ansehen →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUY SECTION ===== -->
+<section class="buy-section" id="buy" aria-labelledby="buy-heading">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label" data-i18n="buy_label">Preise</span>
+      <h2 class="section-title" id="buy-heading" data-i18n="buy_title">Dein Zypern-Abenteuer beginnt hier</h2>
+      <p class="section-subtitle centered" data-i18n="buy_subtitle">
+        Einmalig kaufen, für immer nutzen. Kein Abo, keine versteckten Kosten.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Single route 1 -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-name" data-i18n="plan1_name">Route 1</div>
+        <div class="pricing-price"><sup>€</sup><span data-i18n="plan1_price">19</span></div>
+        <div class="pricing-per" data-i18n="plan1_per">Einzelroute</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan1_f1">GPS-Track (GPX)</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan1_f2">Detailliertes PDF (30+ Seiten)</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan1_f3">Alle Stopps mit Koordinaten</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan1_f4">Insider-Tipps &amp; Restaurants</span></li>
+        </ul>
+        <a href="#" class="btn btn-secondary btn-full" data-i18n="plan1_btn">Route kaufen</a>
+      </div>
+
+      <!-- Bundle (featured) -->
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-badge" data-i18n="plan2_badge">Beliebteste Wahl</div>
+        <div class="pricing-name" data-i18n="plan2_name">Alle 3 Routen</div>
+        <div class="pricing-price"><sup>€</sup><span data-i18n="plan2_price">49</span></div>
+        <div class="pricing-per" data-i18n="plan2_per">Sparpaket · statt €57</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan2_f1">Alle 3 GPS-Tracks (GPX)</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan2_f2">Komplettpaket (90+ Seiten)</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan2_f3">Alle Stopps &amp; Koordinaten</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan2_f4">Detaillierte Sicherheitstipps</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan2_f5">Interaktive Karte</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan2_f6">Lebenslange Updates</span></li>
+        </ul>
+        <a href="#" class="btn btn-secondary btn-full" data-i18n="plan2_btn">Paket kaufen – Jetzt €49</a>
+      </div>
+
+      <!-- Single route 2/3 -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-name" data-i18n="plan3_name">Route 2 oder 3</div>
+        <div class="pricing-price"><sup>€</sup><span data-i18n="plan3_price">19</span></div>
+        <div class="pricing-per" data-i18n="plan3_per">Einzelroute</div>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan3_f1">GPS-Track (GPX)</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan3_f2">Detailliertes PDF (30+ Seiten)</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan3_f3">Alle Stopps mit Koordinaten</span></li>
+          <li class="pricing-feature"><span class="feature-check">✓</span><span data-i18n="plan3_f4">Insider-Tipps &amp; Restaurants</span></li>
+        </ul>
+        <a href="#" class="btn btn-secondary btn-full" data-i18n="plan3_btn">Route kaufen</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section-pad bg-beige" aria-labelledby="testi-heading">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label" data-i18n="testi_label">Erfahrungsberichte</span>
+      <h2 class="section-title" id="testi-heading" data-i18n="testi_title">Was Fahrer sagen</h2>
+      <p class="section-subtitle centered" data-i18n="testi_subtitle">
+        Echte Erlebnisse von echten Motorradfahrern auf Zypern.
+      </p>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <blockquote class="testimonial-card fade-up">
+        <p class="testimonial-text" data-i18n="testi1_text">
+          Die Troodos-Route war ein absoluter Traum. Der GPS-Track war punktgenau…
+        </p>
+        <footer class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">KM</div>
+          <div>
+            <div class="author-name" data-i18n="testi1_name">Klaus M.</div>
+            <div class="author-origin" data-i18n="testi1_origin">München, Deutschland</div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial-card fade-up">
+        <p class="testimonial-text" data-i18n="testi2_text">
+          Fahre seit 20 Jahren Motorrad in ganz Europa. Einer der besten Guides…
+        </p>
+        <footer class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#5C6B2E,#C1440E)" aria-hidden="true">PS</div>
+          <div>
+            <div class="author-name" data-i18n="testi2_name">Petra S.</div>
+            <div class="author-origin" data-i18n="testi2_origin">Wien, Österreich</div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial-card fade-up">
+        <p class="testimonial-text" data-i18n="testi3_text">
+          Great value for money. The GPX tracks worked perfectly on my Garmin…
+        </p>
+        <footer class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#1B3A5C,#7A8C3D)" aria-hidden="true">JW</div>
+          <div>
+            <div class="author-name" data-i18n="testi3_name">James W.</div>
+            <div class="author-origin" data-i18n="testi3_origin">Manchester, UK</div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          </div>
+        </footer>
+      </blockquote>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== VIDEO SECTION ===== -->
+<section class="section-pad video-section" aria-labelledby="video-heading">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label" data-i18n="video_label">Vorschau</span>
+      <h2 class="section-title" id="video-heading" data-i18n="video_title">Erlebe Zypern auf zwei Rädern</h2>
+      <p class="section-subtitle centered" data-i18n="video_subtitle">
+        Ein kurzer Blick auf das, was dich erwartet.
+      </p>
+    </div>
+
+    <div class="video-wrapper fade-up">
+      <div class="video-placeholder" role="button" tabindex="0" aria-label="Play video">
+        <div class="video-play-btn">
+          <div class="play-icon" aria-hidden="true">▶</div>
+          <div class="play-label" data-i18n="video_play">Video abspielen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" aria-label="Footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-brand-name">🏍️ ZypernGuide</div>
+        <p class="footer-brand-desc" data-i18n="footer_desc">
+          Der umfassendste Motorrad-Reiseführer für Zypern. Von Fahrern für Fahrer.
+        </p>
+        <div class="lang-switcher" style="gap:8px;">
+          <button class="lang-btn" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading" data-i18n="footer_links">Links</div>
+        <ul class="footer-links">
+          <li><a class="footer-link" href="index.html" data-i18n="nav_home">Startseite</a></li>
+          <li><a class="footer-link" href="routen.html" data-i18n="nav_routes">Routen</a></li>
+          <li><a class="footer-link" href="sicherheit.html" data-i18n="nav_safety">Sicherheit</a></li>
+          <li><a class="footer-link" href="#buy" data-i18n="nav_buy">Kaufen</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-heading" data-i18n="footer_legal">Rechtliches</div>
+        <ul class="footer-links">
+          <li><a class="footer-link" href="#" data-i18n="footer_imprint">Impressum</a></li>
+          <li><a class="footer-link" href="#" data-i18n="footer_privacy">Datenschutz</a></li>
+          <li><a class="footer-link" href="#" data-i18n="footer_terms">AGB</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-heading" data-i18n="footer_contact">Kontakt</div>
+        <ul class="footer-links">
+          <li><a class="footer-link" href="mailto:hallo@zypernguide.de">hallo@zypernguide.de</a></li>
+          <li><span class="footer-link">Zypern, Mittelmeer</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      <span data-i18n="footer_copyright">© 2024 Zypern Motorrad Guide. Alle Rechte vorbehalten.</span>
+      <div class="footer-legal">
+        <a href="#" data-i18n="footer_privacy">Datenschutz</a>
+        <a href="#" data-i18n="footer_imprint">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
