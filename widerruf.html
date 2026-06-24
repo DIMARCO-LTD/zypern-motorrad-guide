@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Widerrufsbelehrung | ZypernMoto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terracotta: #C1440E;
+      --terracotta-light: #D96B3F;
+      --beige: #F5E6C8;
+      --beige-dark: #EDD5A3;
+      --beige-light: #FAF3E4;
+      --blue: #1B4F72;
+      --blue-dark: #143D58;
+      --blue-light: #2E6B95;
+      --white: #FFFFFF;
+      --text-dark: #1A1A1A;
+      --text-mid: #4A4A4A;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.10);
+      --shadow-md: 0 6px 24px rgba(0,0,0,.14);
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--beige-light);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* ── Language Bar ── */
+    .lang-bar {
+      position: fixed;
+      top: 0; right: 0;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      background: rgba(27,79,114,.92);
+      backdrop-filter: blur(8px);
+      border-bottom-left-radius: var(--radius);
+    }
+
+    .lang-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      padding: 4px 10px;
+      border: 1.5px solid rgba(255,255,255,.35);
+      border-radius: 20px;
+      background: transparent;
+      color: rgba(255,255,255,.65);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .lang-btn.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--white);
+    }
+
+    .lang-btn:hover:not(.active) {
+      border-color: rgba(255,255,255,.7);
+      color: var(--white);
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+      padding: 72px 5% 48px;
+      text-align: center;
+    }
+
+    .header-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+
+    .header-logo:hover { opacity: 1; }
+    .header-logo span { color: var(--terracotta-light); }
+
+    .page-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--beige);
+      opacity: .7;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: .9rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 8px;
+    }
+
+    /* ── TOC ── */
+    .toc-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      max-width: 820px;
+      margin: 32px auto 0;
+    }
+
+    .toc-title {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--beige);
+      opacity: .7;
+      margin-bottom: 14px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 24px;
+    }
+
+    .toc-list a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: color .2s;
+    }
+
+    .toc-list a:hover { color: var(--beige); }
+
+    .toc-num {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--terracotta-light);
+      min-width: 20px;
+    }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      max-width: 820px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 64px 0 80px;
+    }
+
+    .update-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--beige);
+      color: var(--text-mid);
+      font-size: .78rem;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+    }
+
+    .wr-block {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .3s;
+      scroll-margin-top: 24px;
+    }
+
+    .wr-block:hover { box-shadow: var(--shadow-md); }
+
+    .block-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .icon-blue  { background: rgba(27,79,114,.10); }
+    .icon-terra { background: rgba(193,68,14,.09); }
+    .icon-olive { background: rgba(93,109,62,.10); }
+    .icon-gold  { background: rgba(244,167,0,.10); }
+
+    .block-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--beige-dark);
+    }
+
+    .prose {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .prose:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--text-dark); font-weight: 600; }
+
+    .prose a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid var(--beige-dark);
+      transition: color .2s, border-color .2s;
+    }
+
+    .prose a:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+    .sub-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 20px 0 8px;
+    }
+
+    /* ── Highlight / Warning boxes ── */
+    .highlight-box {
+      background: var(--beige-light);
+      border-left: 4px solid var(--terracotta);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .highlight-box .prose { margin-bottom: 0; }
+
+    .info-box {
+      background: rgba(27,79,114,.06);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .info-box .prose { margin-bottom: 0; }
+
+    .success-box {
+      background: rgba(76,175,80,.08);
+      border-left: 4px solid #4CAF50;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .success-box .prose { margin-bottom: 0; }
+
+    /* ── Steps ── */
+    .steps {
+      list-style: none;
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      color: var(--white);
+      font-size: .8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-text {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      padding-top: 4px;
+    }
+
+    /* ── Musterwiderruf form ── */
+    .form-card {
+      background: var(--beige-light);
+      border: 1.5px dashed var(--beige-dark);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin: 20px 0;
+      font-size: .875rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    .form-card strong { color: var(--text-dark); }
+
+    .form-field {
+      display: inline-block;
+      border-bottom: 1px solid var(--text-mid);
+      min-width: 200px;
+      margin: 0 4px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 24px 5%;
+      font-size: .8rem;
+    }
+
+    footer a {
+      color: rgba(255,255,255,.6);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    footer a:hover { color: var(--beige); }
+
+    /* ── Language visibility ── */
+    [data-de], [data-en] { display: none; }
+    body.lang-de [data-de] { display: revert; }
+    body.lang-en [data-en] { display: revert; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .toc-list { grid-template-columns: 1fr; }
+      .wr-block { padding: 24px 20px; }
+      .form-card { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body class="lang-de">
+
+  <!-- Language Bar -->
+  <div class="lang-bar">
+    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="header-logo">&#x1F3CD;&#xFE0F; <span>Zypern</span>Moto</a>
+    <div class="page-label" data-de>Rechtliche Informationen</div>
+    <div class="page-label" data-en>Legal Information</div>
+    <h1 class="page-title" data-de>Widerrufsbelehrung &amp; Widerrufsformular</h1>
+    <h1 class="page-title" data-en>Right of Withdrawal &amp; Withdrawal Form</h1>
+    <p class="page-subtitle" data-de>Gem&auml;&szlig; &sect; 356 BGB i. V. m. Art. 246a EGBGB</p>
+    <p class="page-subtitle" data-en>Pursuant to &sect; 356 BGB in conjunction with Art. 246a EGBGB</p>
+
+    <!-- TOC -->
+    <div class="toc-card">
+      <div class="toc-title" data-de>Inhalt</div>
+      <div class="toc-title" data-en>Contents</div>
+      <ul class="toc-list" data-de>
+        <li><a href="#widerrufsrecht"><span class="toc-num">1.</span> Widerrufsrecht</a></li>
+        <li><a href="#widerrufsfrist"><span class="toc-num">2.</span> Widerrufsfrist</a></li>
+        <li><a href="#ausnahmen"><span class="toc-num">3.</span> Ausnahmen</a></li>
+        <li><a href="#folgen"><span class="toc-num">4.</span> Widerrufsfolgen</a></li>
+        <li><a href="#garantie"><span class="toc-num">5.</span> 30-Tage-Garantie</a></li>
+        <li><a href="#formular"><span class="toc-num">6.</span> Musterformular</a></li>
+      </ul>
+      <ul class="toc-list" data-en>
+        <li><a href="#widerrufsrecht"><span class="toc-num">1.</span> Right of Withdrawal</a></li>
+        <li><a href="#widerrufsfrist"><span class="toc-num">2.</span> Withdrawal Period</a></li>
+        <li><a href="#ausnahmen"><span class="toc-num">3.</span> Exceptions</a></li>
+        <li><a href="#folgen"><span class="toc-num">4.</span> Consequences</a></li>
+        <li><a href="#garantie"><span class="toc-num">5.</span> 30-Day Guarantee</a></li>
+        <li><a href="#formular"><span class="toc-num">6.</span> Model Form</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <div class="update-badge" data-de>&#x1F4C5; Stand: Juni 2026</div>
+    <div class="update-badge" data-en>&#x1F4C5; Version: June 2026</div>
+
+    <!-- 1. Widerrufsrecht -->
+    <div class="wr-block" id="widerrufsrecht">
+      <div class="block-icon icon-terra">&#x21A9;&#xFE0F;</div>
+      <h2 class="block-title" data-de>1. Widerrufsrecht</h2>
+      <h2 class="block-title" data-en>1. Right of Withdrawal</h2>
+
+      <p class="prose" data-de>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gr&uuml;nden diesen Vertrag zu widerrufen.</p>
+      <p class="prose" data-en>You have the right to withdraw from this contract within fourteen days without giving any reason.</p>
+
+      <p class="prose" data-de>Um Ihr Widerrufsrecht auszu&uuml;ben, m&uuml;ssen Sie uns</p>
+      <p class="prose" data-en>To exercise the right of withdrawal, you must inform us</p>
+
+      <div class="info-box" data-de>
+        <p class="prose">
+          <strong>ZypernMoto GmbH</strong><br>
+          Musterstra&szlig;e 42<br>
+          10115 Berlin<br>
+          Deutschland<br>
+          E-Mail: <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a><br>
+          Tel.: <a href="tel:+4930123456789">+49 30 123 456 789</a>
+        </p>
+      </div>
+      <div class="info-box" data-en>
+        <p class="prose">
+          <strong>ZypernMoto GmbH</strong><br>
+          Musterstra&szlig;e 42<br>
+          10115 Berlin<br>
+          Germany<br>
+          Email: <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a><br>
+          Tel.: <a href="tel:+4930123456789">+49 30 123 456 789</a>
+        </p>
+      </div>
+
+      <p class="prose" data-de>mittels einer eindeutigen Erkl&auml;rung (z. B. ein mit der Post versandter Brief oder eine E-Mail) &uuml;ber Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie k&ouml;nnen daf&uuml;r das beigef&uuml;gte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
+      <p class="prose" data-en>by means of a clear statement (e.g. a letter sent by post or an email) of your decision to withdraw from this contract. You may use the attached model withdrawal form, but it is not obligatory.</p>
+    </div>
+
+    <!-- 2. Widerrufsfrist -->
+    <div class="wr-block" id="widerrufsfrist">
+      <div class="block-icon icon-blue">&#x23F0;</div>
+      <h2 class="block-title" data-de>2. Widerrufsfrist</h2>
+      <h2 class="block-title" data-en>2. Withdrawal Period</h2>
+
+      <p class="prose" data-de>Die Widerrufsfrist betr&auml;gt <strong>14 Tage</strong> ab dem Tag des Vertragsabschlusses.</p>
+      <p class="prose" data-en>The withdrawal period is <strong>14 days</strong> from the day the contract is concluded.</p>
+
+      <p class="prose" data-de>Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung &uuml;ber die Aus&uuml;bung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+      <p class="prose" data-en>To meet the withdrawal deadline, it is sufficient for you to send your communication concerning your exercise of the right of withdrawal before the withdrawal period has expired.</p>
+
+      <ul class="steps" data-de>
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Senden Sie uns eine E-Mail an <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a> innerhalb von 14 Tagen nach Vertragsschluss.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Geben Sie Ihre Bestellnummer und den Wunsch zum Widerruf an. Sie k&ouml;nnen das Musterformular unten verwenden.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Wir best&auml;tigen den Eingang Ihres Widerrufs per E-Mail und veranlassen die R&uuml;ckerstattung unverz&uuml;glich, sp&auml;testens binnen 14 Tagen.</div>
+        </li>
+      </ul>
+      <ul class="steps" data-en>
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Send us an email to <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a> within 14 days of concluding the contract.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">State your order number and your intention to withdraw. You may use the model form below.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">We will confirm receipt of your withdrawal by email and arrange the refund immediately, at most within 14 days.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 3. Ausnahmen -->
+    <div class="wr-block" id="ausnahmen">
+      <div class="block-icon icon-gold">&#x26A0;&#xFE0F;</div>
+      <h2 class="block-title" data-de>3. Ausnahmen vom Widerrufsrecht</h2>
+      <h2 class="block-title" data-en>3. Exceptions to the Right of Withdrawal</h2>
+
+      <p class="prose" data-de>Das Widerrufsrecht besteht nicht bei folgenden Vertr&auml;gen:</p>
+      <p class="prose" data-en>The right of withdrawal does not apply to the following contracts:</p>
+
+      <div class="highlight-box" data-de>
+        <p class="prose"><strong>Digitale Inhalte (&sect; 356 Abs. 5 BGB):</strong> Das Widerrufsrecht erlischt vorzeitig bei Vertr&auml;gen &uuml;ber die Lieferung von nicht auf einem k&ouml;rperlichen Datentr&auml;ger befindlichen digitalen Inhalten (Downloads, GPX-Dateien, Online-Guides), wenn der Unternehmer mit der Ausf&uuml;hrung des Vertrages begonnen hat und der Verbraucher</p>
+        <p class="prose" style="margin-top:8px">&#x2714;&#xFE0F; ausdr&uuml;cklich zugestimmt hat, dass der Unternehmer vor Ablauf der Widerrufsfrist mit der Ausf&uuml;hrung beginnt, <strong>und</strong></p>
+        <p class="prose" style="margin-top:4px">&#x2714;&#xFE0F; seine Kenntnis davon best&auml;tigt hat, dass er durch seine Zustimmung mit Beginn der Ausf&uuml;hrung des Vertrages sein Widerrufsrecht verliert.</p>
+      </div>
+      <div class="highlight-box" data-en>
+        <p class="prose"><strong>Digital content (&sect; 356 (5) BGB):</strong> The right of withdrawal expires prematurely for contracts for the supply of digital content not supplied on a tangible medium (downloads, GPX files, online guides) if the trader has begun performance of the contract and the consumer</p>
+        <p class="prose" style="margin-top:8px">&#x2714;&#xFE0F; has expressly consented to the trader beginning performance before the expiry of the withdrawal period, <strong>and</strong></p>
+        <p class="prose" style="margin-top:4px">&#x2714;&#xFE0F; has confirmed their knowledge that by giving their consent they lose their right of withdrawal once the trader has begun performance of the contract.</p>
+      </div>
+
+      <p class="prose" data-de>Beim Kauf &uuml;ber unsere Website erkl&auml;ren Sie durch Aktivierung des entsprechenden K&auml;stchens und Abschluss der Bestellung Ihre ausdr&uuml;ckliche Zustimmung zur sofortigen Ausf&uuml;hrung sowie Ihre Kenntnis &uuml;ber den Verlust des Widerrufsrechts.</p>
+      <p class="prose" data-en>When purchasing via our website, by ticking the relevant box and completing the order you declare your express consent to immediate performance and your knowledge of the loss of the right of withdrawal.</p>
+    </div>
+
+    <!-- 4. Widerrufsfolgen -->
+    <div class="wr-block" id="folgen">
+      <div class="block-icon icon-olive">&#x1F504;</div>
+      <h2 class="block-title" data-de>4. Folgen des Widerrufs</h2>
+      <h2 class="block-title" data-en>4. Consequences of Withdrawal</h2>
+
+      <p class="prose" data-de>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschlie&szlig;lich der Lieferkosten (mit Ausnahme der zus&auml;tzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, g&uuml;nstigste Standardlieferung gew&auml;hlt haben), unverz&uuml;glich und sp&auml;testens binnen vierzehn Tagen ab dem Tag zur&uuml;ckzuzahlen, an dem die Mitteilung &uuml;ber Ihren Widerruf dieses Vertrags bei uns eingegangen ist.</p>
+      <p class="prose" data-de>F&uuml;r diese R&uuml;ckzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der urspr&uuml;nglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdr&uuml;cklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser R&uuml;ckzahlung Entgelte berechnet.</p>
+      <p class="prose" data-en>If you withdraw from this contract, we shall reimburse to you all payments received from you, including the costs of delivery (with the exception of the supplementary costs resulting from your choice of a type of delivery other than the least expensive type of standard delivery offered by us), without undue delay and in any event not later than fourteen days from the day on which we are informed about your decision to withdraw from this contract.</p>
+      <p class="prose" data-en>We will carry out such reimbursement using the same means of payment as you used for the initial transaction, unless you have expressly agreed otherwise; in any event, you will not incur any fees as a result of such reimbursement.</p>
+    </div>
+
+    <!-- 5. 30-Tage-Garantie -->
+    <div class="wr-block" id="garantie">
+      <div class="block-icon icon-olive">&#x1F6E1;&#xFE0F;</div>
+      <h2 class="block-title" data-de>5. Unsere freiwillige 30-Tage-Geld-zur&uuml;ck-Garantie</h2>
+      <h2 class="block-title" data-en>5. Our Voluntary 30-Day Money-Back Guarantee</h2>
+
+      <div class="success-box" data-de>
+        <p class="prose"><strong>&#x1F49A; Kein Risiko &mdash; wir stehen hinter unserem Produkt.</strong> Unabh&auml;ngig vom gesetzlichen Widerrufsrecht und auch dann, wenn das Widerrufsrecht durch Download bereits erloschen ist, erstatten wir Ihnen den vollen Kaufpreis innerhalb von <strong>30 Tagen ab Kaufdatum</strong> &mdash; ohne Fragen, ohne B&uuml;rokratie.</p>
+      </div>
+      <div class="success-box" data-en>
+        <p class="prose"><strong>&#x1F49A; No risk &mdash; we stand behind our product.</strong> Independently of the statutory right of withdrawal, and even where that right has already lapsed due to a download, we will refund the full purchase price within <strong>30 days of the purchase date</strong> &mdash; no questions, no bureaucracy.</p>
+      </div>
+
+      <h3 class="sub-title" data-de>So funktioniert&rsquo;s</h3>
+      <h3 class="sub-title" data-en>How it works</h3>
+      <ul class="steps" data-de>
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Senden Sie eine E-Mail an <a href="mailto:info@zypernmoto.de">info@zypernmoto.de</a> mit dem Betreff &bdquo;R&uuml;ckerstattung&ldquo; und Ihrer Bestellnummer.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Kein Grund erforderlich &mdash; wir bearbeiten Ihren Antrag innerhalb von 1&ndash;2 Werktagen.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Die R&uuml;ckerstattung erfolgt auf das urspr&uuml;ngliche Zahlungsmittel innerhalb von 5&ndash;10 Werktagen.</div>
+        </li>
+      </ul>
+      <ul class="steps" data-en>
+        <li class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Send an email to <a href="mailto:info@zypernmoto.de">info@zypernmoto.de</a> with the subject &ldquo;Refund&rdquo; and your order number.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">No reason required &mdash; we process your request within 1&ndash;2 business days.</div>
+        </li>
+        <li class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">The refund is issued to the original payment method within 5&ndash;10 business days.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 6. Musterformular -->
+    <div class="wr-block" id="formular">
+      <div class="block-icon icon-blue">&#x1F4DD;</div>
+      <h2 class="block-title" data-de>6. Muster-Widerrufsformular</h2>
+      <h2 class="block-title" data-en>6. Model Withdrawal Form</h2>
+
+      <p class="prose" data-de>(Wenn Sie den Vertrag widerrufen wollen, dann f&uuml;llen Sie bitte dieses Formular aus und senden Sie es zur&uuml;ck.)</p>
+      <p class="prose" data-en>(If you want to withdraw from the contract, please complete and return this form.)</p>
+
+      <div class="form-card" data-de>
+        <p><strong>An:</strong><br>
+        ZypernMoto GmbH<br>
+        Musterstra&szlig;e 42, 10115 Berlin<br>
+        E-Mail: <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a></p>
+
+        <p style="margin-top:16px">Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag &uuml;ber den Kauf der folgenden Waren (*) / die Erbringung der folgenden Dienstleistung (*)</p>
+
+        <p style="margin-top:12px">Bestellt am: <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:8px">Bestellnummer: <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:8px">Name des/der Verbraucher(s): <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:8px">Anschrift des/der Verbraucher(s): <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:12px">Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier):<br>
+        <span class="form-field" style="min-width:260px; margin-top:8px; display:inline-block">&nbsp;</span></p>
+        <p style="margin-top:12px">Datum: <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:16px; font-size:.8rem; color:#888">(*) Unzutreffendes streichen.</p>
+      </div>
+
+      <div class="form-card" data-en>
+        <p><strong>To:</strong><br>
+        ZypernMoto GmbH<br>
+        Musterstra&szlig;e 42, 10115 Berlin, Germany<br>
+        Email: <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a></p>
+
+        <p style="margin-top:16px">I/We (*) hereby give notice that I/We (*) withdraw from my/our (*) contract of sale of the following goods (*) / for the provision of the following service (*)</p>
+
+        <p style="margin-top:12px">Ordered on: <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:8px">Order number: <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:8px">Name of consumer(s): <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:8px">Address of consumer(s): <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:12px">Signature of consumer(s) (only if this form is notified on paper):<br>
+        <span class="form-field" style="min-width:260px; margin-top:8px; display:inline-block">&nbsp;</span></p>
+        <p style="margin-top:12px">Date: <span class="form-field">&nbsp;</span></p>
+        <p style="margin-top:16px; font-size:.8rem; color:#888">(*) Delete as appropriate.</p>
+      </div>
+
+      <p class="prose" data-de>Sie k&ouml;nnen dieses Formular ausf&uuml;llen, ausdrucken und per Post senden, oder den Inhalt per E-Mail an <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a> schicken.</p>
+      <p class="prose" data-en>You can fill in and print this form and send it by post, or send the content by email to <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a>.</p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div style="margin-bottom:8px">
+      <a href="index.html" data-de>&larr; Zur&uuml;ck zur Startseite</a>
+      <a href="index.html" data-en>&larr; Back to Homepage</a>
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      <a href="impressum.html" data-de>Impressum</a>
+      <a href="impressum.html" data-en>Legal Notice</a>
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      <a href="datenschutz.html" data-de>Datenschutz</a>
+      <a href="datenschutz.html" data-en>Privacy Policy</a>
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      <a href="agb.html" data-de>AGB</a>
+      <a href="agb.html" data-en>T&amp;Cs</a>
+    </div>
+    <span data-de>&copy; 2026 ZypernMoto &middot; Alle Rechte vorbehalten</span>
+    <span data-en>&copy; 2026 ZypernMoto &middot; All rights reserved</span>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.body.classList.remove('lang-de', 'lang-en');
+      document.body.classList.add('lang-' + lang);
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+    }
+    setLang('de');
+  </script>
+</body>
+</html>
