@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zypern Motorrad Guide | Cyprus Motorcycle Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terracotta: #C1440E;
+      --terracotta-dark: #9E3509;
+      --terracotta-light: #D96B3F;
+      --beige: #F5E6C8;
+      --beige-dark: #EDD5A3;
+      --beige-light: #FAF3E4;
+      --blue: #1B4F72;
+      --blue-dark: #143D58;
+      --blue-light: #2E6B95;
+      --olive: #5D6D3E;
+      --olive-light: #7A8F52;
+      --white: #FFFFFF;
+      --text-dark: #1A1A1A;
+      --text-mid: #4A4A4A;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.10);
+      --shadow-md: 0 6px 24px rgba(0,0,0,.14);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,.18);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--beige-light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* ── Language Toggle ── */
+    .lang-bar {
+      position: fixed;
+      top: 0; right: 0;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      background: rgba(27,79,114,.92);
+      backdrop-filter: blur(8px);
+      border-bottom-left-radius: var(--radius);
+    }
+
+    .lang-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      padding: 4px 10px;
+      border: 1.5px solid rgba(255,255,255,.35);
+      border-radius: 20px;
+      background: transparent;
+      color: rgba(255,255,255,.65);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .lang-btn.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--white);
+    }
+
+    .lang-btn:hover:not(.active) {
+      border-color: rgba(255,255,255,.7);
+      color: var(--white);
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 5%;
+      transition: background .3s, box-shadow .3s;
+    }
+
+    nav.scrolled {
+      background: rgba(27,79,114,.96);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo span { color: var(--terracotta-light); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: .875rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--beige); }
+
+    .nav-cta {
+      background: var(--terracotta) !important;
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 25px;
+    }
+
+    .nav-cta:hover { background: var(--terracotta-dark) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 999;
+      background: var(--blue);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .mobile-menu a:hover { color: var(--beige); }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(27,79,114,.78) 0%, rgba(193,68,14,.42) 55%, rgba(27,79,114,.88) 100%),
+        linear-gradient(180deg, #87CEEB 0%, #C8D8E8 35%, #D4A96A 65%, #8B6B3D 100%);
+    }
+
+    /* Decorative SVG landscape behind gradient */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='900'%3E%3C!-- Sea --%3E%3Crect x='0' y='540' width='1440' height='360' fill='%231A6B9A' opacity='.5'/%3E%3C!-- Mountains --%3E%3Cpolygon points='0,580 200,320 400,520 600,280 800,460 1000,300 1200,480 1440,340 1440,580' fill='%235D6D3E' opacity='.7'/%3E%3Cpolygon points='0,580 150,380 320,540 500,320 700,500 900,340 1100,500 1300,360 1440,440 1440,580' fill='%234A5C2E' opacity='.6'/%3E%3C!-- Road --%3E%3Cpath d='M0 820 Q360 680 720 720 Q1080 760 1440 820' stroke='%23C8B89A' stroke-width='36' fill='none' opacity='.5'/%3E%3Cpath d='M0 820 Q360 680 720 720 Q1080 760 1440 820' stroke='%23EDD5A3' stroke-width='3' fill='none' stroke-dasharray='28 18' opacity='.7'/%3E%3C!-- Sun --%3E%3Ccircle cx='1080' cy='140' r='70' fill='%23FFD060' opacity='.75'/%3E%3Ccircle cx='1080' cy='140' r='90' fill='%23FFD060' opacity='.18'/%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      mix-blend-mode: multiply;
+      opacity: .55;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(193,68,14,.85);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+
+    .hero-title .accent { color: var(--beige); }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,.88);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: var(--white);
+      border: none;
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(193,68,14,.4);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(193,68,14,.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.65);
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.9);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.6);
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      animation: bounce 2.4s infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 88px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      z-index: 2;
+    }
+
+    .stat { text-align: center; color: var(--white); }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--beige);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .75;
+      margin-top: 4px;
+    }
+
+    /* ── Section Base ── */
+    section { padding: 96px 5%; }
+
+    .section-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-mid);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto 56px;
+    }
+
+    /* ── Features ── */
+    #features { background: var(--white); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 32px 20px;
+      border-radius: var(--radius);
+      background: var(--beige-light);
+      transition: transform .3s;
+    }
+
+    .feature-item:hover { transform: translateY(-4px); }
+
+    .feature-icon {
+      width: 60px; height: 60px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 16px;
+    }
+
+    .fi-1 { background: rgba(27,79,114,.12); }
+    .fi-2 { background: rgba(193,68,14,.10); }
+    .fi-3 { background: rgba(93,109,62,.12); }
+    .fi-4 { background: rgba(244,167,0,.12); }
+
+    .feature-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .feature-desc { font-size: .83rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* ── Routes ── */
+    #routes { background: var(--beige-light); }
+
+    .routes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .route-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .route-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+    .route-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .route-img-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform .5s;
+    }
+
+    .route-card:hover .route-img-bg { transform: scale(1.06); }
+    .route-img-bg.coastal { background: linear-gradient(135deg, #1B4F72 0%, #2E6B95 40%, #87CEEB 100%); }
+    .route-img-bg.mountain { background: linear-gradient(135deg, #3D5A28 0%, #5D6D3E 50%, #87A048 100%); }
+    .route-img-bg.heritage { background: linear-gradient(135deg, #8B4513 0%, #C1440E 50%, #D96B3F 100%); }
+
+    .route-img-wave {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+    }
+
+    .route-difficulty {
+      position: absolute;
+      top: 14px; right: 14px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+    }
+
+    .diff-easy { background: rgba(93,109,62,.85); color: #fff; }
+    .diff-medium { background: rgba(193,68,14,.85); color: #fff; }
+    .diff-hard { background: rgba(27,79,114,.85); color: #fff; }
+
+    .route-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+
+    .route-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1.3rem;
+    }
+
+    .route-icon.coastal { background: rgba(27,79,114,.1); }
+    .route-icon.mountain { background: rgba(93,109,62,.12); }
+    .route-icon.heritage { background: rgba(193,68,14,.10); }
+
+    .route-name { font-size: 1.25rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+
+    .route-desc { font-size: .875rem; color: var(--text-mid); line-height: 1.65; margin-bottom: 20px; flex: 1; }
+
+    .route-meta {
+      display: flex;
+      gap: 16px;
+      border-top: 1px solid var(--beige-dark);
+      padding-top: 16px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+
+    .meta-item { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--text-mid); }
+
+    .route-tags { margin-bottom: 14px; }
+
+    .route-tag {
+      display: inline-block;
+      background: var(--beige);
+      color: var(--blue);
+      font-size: .7rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin: 4px 4px 0 0;
+    }
+
+    /* ── Pricing ── */
+    #pricing {
+      background: linear-gradient(145deg, var(--blue-dark) 0%, var(--blue) 55%, var(--blue-light) 100%);
+    }
+
+    #pricing .section-title { color: var(--white); }
+    #pricing .section-label { color: var(--beige); }
+    #pricing .section-desc { color: rgba(255,255,255,.75); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      transition: transform .3s, background .3s;
+      position: relative;
+    }
+
+    .pricing-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.12); }
+
+    .pricing-card.featured {
+      background: var(--white);
+      border-color: transparent;
+      box-shadow: var(--shadow-lg);
+      transform: scale(1.04);
+    }
+
+    .pricing-card.featured:hover { transform: scale(1.04) translateY(-4px); }
+
+    .featured-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--terracotta);
+      color: var(--white);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card:not(.featured) .pricing-name { color: var(--beige); }
+    .pricing-card.featured .pricing-name { color: var(--blue); }
+
+    .pricing-price { margin: 20px 0 8px; }
+
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .pricing-card:not(.featured) .price-amount { color: var(--white); }
+    .pricing-card.featured .price-amount { color: var(--terracotta); }
+
+    .price-currency { font-size: 1.2rem; vertical-align: super; font-weight: 600; }
+
+    .price-period { font-size: .8rem; opacity: .65; margin-top: 4px; }
+    .pricing-card:not(.featured) .price-period { color: var(--beige); }
+    .pricing-card.featured .price-period { color: var(--text-mid); }
+
+    .pricing-features {
+      list-style: none;
+      margin: 24px 0 28px;
+      text-align: left;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .875rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .pricing-card.featured .pricing-features li { border-bottom-color: var(--beige-dark); color: var(--text-mid); }
+    .pricing-card:not(.featured) .pricing-features li { color: rgba(255,255,255,.8); }
+
+    .check-icon { color: #4CAF50; flex-shrink: 0; margin-top: 2px; }
+
+    .btn-pricing {
+      width: 100%;
+      padding: 13px;
+      border-radius: 28px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .pricing-card:not(.featured) .btn-pricing {
+      background: rgba(255,255,255,.15);
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.3);
+    }
+
+    .pricing-card:not(.featured) .btn-pricing:hover { background: rgba(255,255,255,.25); }
+
+    .pricing-card.featured .btn-pricing {
+      background: var(--terracotta);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(193,68,14,.4);
+    }
+
+    .pricing-card.featured .btn-pricing:hover { background: var(--terracotta-dark); }
+
+    .pricing-guarantee {
+      text-align: center;
+      margin-top: 40px;
+      color: rgba(255,255,255,.6);
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ── Testimonials ── */
+    #testimonials { background: var(--beige); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .stars { color: #F4A700; font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+
+    .testimonial-text {
+      font-size: .9rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      flex: 1;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--beige-dark);
+      padding-top: 16px;
+    }
+
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .av-1 { background: linear-gradient(135deg, #1B4F72, #2E6B95); }
+    .av-2 { background: linear-gradient(135deg, #5D6D3E, #7A8F52); }
+    .av-3 { background: linear-gradient(135deg, #C1440E, #D96B3F); }
+
+    .author-name { font-weight: 600; font-size: .9rem; color: var(--blue); }
+    .author-location { font-size: .78rem; color: var(--text-mid); margin-top: 2px; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.75);
+      padding: 64px 5% 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto 48px;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer-brand span { color: var(--terracotta-light); }
+
+    .footer-about { font-size: .875rem; line-height: 1.7; margin-bottom: 20px; }
+
+    .footer-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-links a {
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      font-size: .875rem;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: var(--beige); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      text-align: center;
+      font-size: .8rem;
+      color: rgba(255,255,255,.4);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── Scroll Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Language switching ── */
+    [data-de], [data-en] { display: none; }
+    body.lang-de [data-de] { display: revert; }
+    body.lang-en [data-en] { display: revert; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 72px 5%; }
+      .routes-grid, .pricing-grid, .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+      .pricing-card.featured { transform: none; }
+      .pricing-card.featured:hover { transform: translateY(-4px); }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { gap: 24px; }
+      .stat-num { font-size: 1.5rem; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    }
+  </style>
+</head>
+<body class="lang-de">
+
+  <!-- Language Bar -->
+  <div class="lang-bar">
+    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">🏍️ <span>Zypern</span>Moto</a>
+    <ul class="nav-links">
+      <li>
+        <a href="#routes" data-de>Routen</a>
+        <a href="#routes" data-en>Routes</a>
+      </li>
+      <li>
+        <a href="#features" data-de>Warum wir</a>
+        <a href="#features" data-en>Why Us</a>
+      </li>
+      <li>
+        <a href="#pricing" data-de>Preise</a>
+        <a href="#pricing" data-en>Pricing</a>
+      </li>
+      <li>
+        <a href="#testimonials" data-de>Bewertungen</a>
+        <a href="#testimonials" data-en>Reviews</a>
+      </li>
+      <li>
+        <a href="#pricing" class="nav-cta" data-de>Jetzt kaufen</a>
+        <a href="#pricing" class="nav-cta" data-en>Buy Now</a>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="#routes" onclick="closeMobileMenu()" data-de>Routen</a>
+    <a href="#routes" onclick="closeMobileMenu()" data-en>Routes</a>
+    <a href="#features" onclick="closeMobileMenu()" data-de>Warum wir</a>
+    <a href="#features" onclick="closeMobileMenu()" data-en>Why Us</a>
+    <a href="#pricing" onclick="closeMobileMenu()" data-de>Preise</a>
+    <a href="#pricing" onclick="closeMobileMenu()" data-en>Pricing</a>
+    <a href="#testimonials" onclick="closeMobileMenu()" data-de>Bewertungen</a>
+    <a href="#testimonials" onclick="closeMobileMenu()" data-en>Reviews</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-de>✦ Das ultimative Motorrad-Erlebnis</div>
+      <div class="hero-badge" data-en>✦ The Ultimate Motorcycle Experience</div>
+
+      <h1 class="hero-title" data-de>Entdecke <span class="accent">Zypern</span><br>auf zwei Rädern</h1>
+      <h1 class="hero-title" data-en>Discover <span class="accent">Cyprus</span><br>on Two Wheels</h1>
+
+      <p class="hero-subtitle" data-de>Der komplette digitale Reiseführer für Motorradfahrer – mit den schönsten Küstenstraßen, Bergpässen und historischen Routen der Mittelmeerinsel.</p>
+      <p class="hero-subtitle" data-en>The complete digital travel guide for motorcyclists — featuring the most scenic coastal roads, mountain passes, and heritage routes on this Mediterranean island.</p>
+
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary" data-de>Guide kaufen — ab €49</a>
+        <a href="#pricing" class="btn-primary" data-en>Get the Guide — from €49</a>
+        <a href="#routes" class="btn-outline" data-de>Routen entdecken</a>
+        <a href="#routes" class="btn-outline" data-en>Explore Routes</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">12+</div>
+        <div class="stat-label" data-de>Routen</div>
+        <div class="stat-label" data-en>Routes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2.400</div>
+        <div class="stat-label" data-de>Kilometer</div>
+        <div class="stat-label" data-en>Kilometres</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">850+</div>
+        <div class="stat-label" data-de>Reisende</div>
+        <div class="stat-label" data-en>Travellers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label" data-de>Bewertung</div>
+        <div class="stat-label" data-en>Rating</div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span data-de>Scrollen</span>
+      <span data-en>Scroll</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ══ FEATURES ══ -->
+  <section id="features">
+    <div class="section-header">
+      <div>
+        <p class="section-label" data-de>Warum ZypernMoto</p>
+        <p class="section-label" data-en>Why ZypernMoto</p>
+        <h2 class="section-title" data-de>Alles, was du für<br>deine Reise brauchst</h2>
+        <h2 class="section-title" data-en>Everything you need<br>for your journey</h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item reveal">
+        <div class="feature-icon fi-1">🗺️</div>
+        <h3 class="feature-title" data-de>GPS-optimierte Routen</h3>
+        <h3 class="feature-title" data-en>GPS-Optimised Routes</h3>
+        <p class="feature-desc" data-de>Alle Routen mit downloadbaren GPX-Dateien für gängige Navigationsgeräte und Smartphone-Apps.</p>
+        <p class="feature-desc" data-en>All routes include downloadable GPX files compatible with popular sat-nav devices and smartphone apps.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon fi-2">🏨</div>
+        <h3 class="feature-title" data-de>Kuratierte Unterkünfte</h3>
+        <h3 class="feature-title" data-en>Curated Accommodation</h3>
+        <p class="feature-desc" data-de>Motorradfreundliche Hotels, Pensionen und Campingplätze mit sicherer Garagenstellplatz-Info.</p>
+        <p class="feature-desc" data-en>Motorcycle-friendly hotels, guesthouses, and campsites with secure parking details included.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon fi-3">🔧</div>
+        <h3 class="feature-title" data-de>Werkstatt &amp; Pannenhilfe</h3>
+        <h3 class="feature-title" data-en>Workshops &amp; Breakdown</h3>
+        <p class="feature-desc" data-de>Vollständige Liste zuverlässiger Werkstätten, Reifenservices und Pannenhilfe-Nummern.</p>
+        <p class="feature-desc" data-en>Complete list of trusted workshops, tyre services, and breakdown assistance numbers island-wide.</p>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon fi-4">☀️</div>
+        <h3 class="feature-title" data-de>Reisezeit &amp; Klima</h3>
+        <h3 class="feature-title" data-en>Season &amp; Climate</h3>
+        <p class="feature-desc" data-de>Monatsgenaue Wetterübersichten, ideale Fahrzeiten und Hinweise zu Straßensperrungen.</p>
+        <p class="feature-desc" data-en>Month-by-month weather breakdowns, ideal riding windows, and seasonal road closure warnings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ROUTES ══ -->
+  <section id="routes">
+    <div class="section-header">
+      <div>
+        <p class="section-label" data-de>Ausgewählte Routen</p>
+        <p class="section-label" data-en>Featured Routes</p>
+        <h2 class="section-title" data-de>Drei legendäre<br>Motorradstrecken</h2>
+        <h2 class="section-title" data-en>Three Legendary<br>Motorcycle Routes</h2>
+      </div>
+      <p class="section-desc" data-de>Von der türkisblauen Küste bis zu den Gipfeln des Troodos-Gebirges – jede Route erzählt ihre eigene Geschichte.</p>
+      <p class="section-desc" data-en>From the turquoise coastline to the peaks of the Troodos Mountains — every route tells its own story.</p>
+    </div>
+
+    <div class="routes-grid">
+
+      <!-- Route 1: Coastal -->
+      <div class="route-card reveal">
+        <div class="route-img">
+          <div class="route-img-bg coastal"></div>
+          <span class="route-difficulty diff-easy" data-de>Leicht</span>
+          <span class="route-difficulty diff-easy" data-en>Easy</span>
+          <svg class="route-img-wave" viewBox="0 0 400 56" preserveAspectRatio="none" height="56">
+            <path d="M0 56 Q100 18 200 38 Q300 58 400 28 L400 56 Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="route-body">
+          <div class="route-icon coastal">🌊</div>
+          <h3 class="route-name" data-de>Küstenparadies</h3>
+          <h3 class="route-name" data-en>Coastal Paradise</h3>
+          <p class="route-desc" data-de>Von Limassol nach Paphos entlang der Aphrodite-Küste. Azurblaues Meer, felsige Buchten und charmante Fischerhafencafés säumen diese unvergessliche Panoramaroute.</p>
+          <p class="route-desc" data-en>From Limassol to Paphos along the Aphrodite Coast. Azure sea, rocky coves, and charming fishing-harbour cafés line this unforgettable panoramic route.</p>
+          <div class="route-tags">
+            <span class="route-tag" data-de>Küstenstraße</span><span class="route-tag" data-en>Coastal road</span>
+            <span class="route-tag" data-de>Aussichtspunkte</span><span class="route-tag" data-en>Viewpoints</span>
+            <span class="route-tag" data-de>Historisch</span><span class="route-tag" data-en>Historic</span>
+          </div>
+          <div class="route-meta">
+            <span class="meta-item">📍 140 km</span>
+            <span class="meta-item" data-de>⏱ 3–4 Std.</span>
+            <span class="meta-item" data-en>⏱ 3–4 hrs</span>
+            <span class="meta-item" data-de>⛽ 3 Tankstellen</span>
+            <span class="meta-item" data-en>⛽ 3 fuel stops</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Route 2: Mountain -->
+      <div class="route-card reveal">
+        <div class="route-img">
+          <div class="route-img-bg mountain"></div>
+          <span class="route-difficulty diff-hard" data-de>Anspruchsvoll</span>
+          <span class="route-difficulty diff-hard" data-en>Challenging</span>
+          <svg class="route-img-wave" viewBox="0 0 400 56" preserveAspectRatio="none" height="56">
+            <path d="M0 56 Q100 18 200 38 Q300 58 400 28 L400 56 Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="route-body">
+          <div class="route-icon mountain">🏔️</div>
+          <h3 class="route-name" data-de>Troodos-Gebirgspass</h3>
+          <h3 class="route-name" data-en>Troodos Mountain Pass</h3>
+          <p class="route-desc" data-de>Schroffe Bergpässe, byzantinische Klöster und Kiefernwälder. Diese Route ist die größte Herausforderung auf Zypern und belohnt mit atemberaubenden Ausblicken.</p>
+          <p class="route-desc" data-en>Rugged mountain passes, Byzantine monasteries, and pine forests. Cyprus's greatest riding challenge, rewarding you with breathtaking panoramic views at every turn.</p>
+          <div class="route-tags">
+            <span class="route-tag" data-de>Bergpässe</span><span class="route-tag" data-en>Mountain passes</span>
+            <span class="route-tag" data-de>Kurven</span><span class="route-tag" data-en>Hairpins</span>
+            <span class="route-tag" data-de>Klöster</span><span class="route-tag" data-en>Monasteries</span>
+          </div>
+          <div class="route-meta">
+            <span class="meta-item">📍 185 km</span>
+            <span class="meta-item" data-de>⏱ 5–7 Std.</span>
+            <span class="meta-item" data-en>⏱ 5–7 hrs</span>
+            <span class="meta-item">↑ 1.952 m</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Route 3: Heritage -->
+      <div class="route-card reveal">
+        <div class="route-img">
+          <div class="route-img-bg heritage"></div>
+          <span class="route-difficulty diff-medium" data-de>Mittel</span>
+          <span class="route-difficulty diff-medium" data-en>Moderate</span>
+          <svg class="route-img-wave" viewBox="0 0 400 56" preserveAspectRatio="none" height="56">
+            <path d="M0 56 Q100 18 200 38 Q300 58 400 28 L400 56 Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="route-body">
+          <div class="route-icon heritage">🏺</div>
+          <h3 class="route-name" data-de>Antike Kulturroute</h3>
+          <h3 class="route-name" data-en>Ancient Heritage Route</h3>
+          <p class="route-desc" data-de>Durch jahrtausendealte Dörfer, UNESCO-Stätten und antike Amphitheater. Erlebe die reiche Geschichte der Insel Aphrodites aus dem Sattel heraus.</p>
+          <p class="route-desc" data-en>Through millennia-old villages, UNESCO sites, and ancient amphitheatres. Experience the rich history of the island of Aphrodite from the saddle.</p>
+          <div class="route-tags">
+            <span class="route-tag">UNESCO</span>
+            <span class="route-tag" data-de>Weinberge</span><span class="route-tag" data-en>Vineyards</span>
+            <span class="route-tag" data-de>Dörfer</span><span class="route-tag" data-en>Villages</span>
+          </div>
+          <div class="route-meta">
+            <span class="meta-item">📍 210 km</span>
+            <span class="meta-item" data-de>⏱ 4–6 Std.</span>
+            <span class="meta-item" data-en>⏱ 4–6 hrs</span>
+            <span class="meta-item" data-de>🏛 8 Sehenswürdigkeiten</span>
+            <span class="meta-item" data-en>🏛 8 sites</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ PRICING ══ -->
+  <section id="pricing">
+    <div class="section-header" style="max-width:1000px">
+      <div>
+        <p class="section-label" data-de>Einfache Preise</p>
+        <p class="section-label" data-en>Simple Pricing</p>
+        <h2 class="section-title" data-de>Dein perfekter<br>Reisebegleiter</h2>
+        <h2 class="section-title" data-en>Your perfect<br>travel companion</h2>
+      </div>
+      <p class="section-desc" data-de>Einmaliger Kauf — kein Abo. Voller Zugriff auf alle Inhalte für immer.</p>
+      <p class="section-desc" data-en>One-time purchase — no subscription. Full access to all content forever.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Basic -->
+      <div class="pricing-card reveal">
+        <p class="pricing-name" data-de>Basis</p>
+        <p class="pricing-name" data-en>Basic</p>
+        <div class="pricing-price">
+          <div class="price-amount"><span class="price-currency">€</span>19</div>
+          <div class="price-period" data-de>Einmalig</div>
+          <div class="price-period" data-en>One-time</div>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span> <span data-de>3 Basis-Routen (PDF)</span><span data-en>3 basic routes (PDF)</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Interaktive Karte</span><span data-en>Interactive map</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Tankstopp-Verzeichnis</span><span data-en>Fuel stop directory</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Deutsch &amp; Englisch</span><span data-en>German &amp; English</span></li>
+        </ul>
+        <button class="btn-pricing" data-de>Jetzt kaufen</button>
+        <button class="btn-pricing" data-en>Buy Now</button>
+      </div>
+
+      <!-- Bundle — Featured -->
+      <div class="pricing-card featured reveal">
+        <div class="featured-badge" data-de>⭐ Bestseller</div>
+        <div class="featured-badge" data-en>⭐ Best Value</div>
+        <p class="pricing-name" data-de>Komplett-Bundle</p>
+        <p class="pricing-name" data-en>Complete Bundle</p>
+        <div class="pricing-price">
+          <div class="price-amount"><span class="price-currency">€</span>49</div>
+          <div class="price-period" data-de>Einmalig · Alle 12+ Routen</div>
+          <div class="price-period" data-en>One-time · All 12+ routes</div>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span> <span data-de>Alle 12+ Routen + GPX-Dateien</span><span data-en>All 12+ routes + GPX files</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Offline-Karten (iOS &amp; Android)</span><span data-en>Offline maps (iOS &amp; Android)</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Motorradfreundliche Hotels</span><span data-en>Motorcycle-friendly hotels</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Werkstatt &amp; Pannenhilfe</span><span data-en>Workshops &amp; breakdown help</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Saisonale Fahrtipps</span><span data-en>Seasonal riding tips</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Kostenlose Updates für immer</span><span data-en>Free updates forever</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Community-Zugang</span><span data-en>Community access</span></li>
+        </ul>
+        <button class="btn-pricing" data-de>Bundle kaufen — €49</button>
+        <button class="btn-pricing" data-en>Get Bundle — €49</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card reveal">
+        <p class="pricing-name" data-de>Pro-Paket</p>
+        <p class="pricing-name" data-en>Pro Package</p>
+        <div class="pricing-price">
+          <div class="price-amount"><span class="price-currency">€</span>89</div>
+          <div class="price-period" data-de>Einmalig</div>
+          <div class="price-period" data-en>One-time</div>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span> <span data-de>Alles aus dem Bundle</span><span data-en>Everything in Bundle</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>1:1 Routenplanung (1 Std.)</span><span data-en>1-on-1 route planning (1 hr)</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Individuelle Anpassungen</span><span data-en>Custom adjustments</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Prioritäts-Support</span><span data-en>Priority support</span></li>
+          <li><span class="check-icon">✓</span> <span data-de>Gedrucktes Handbuch</span><span data-en>Printed handbook</span></li>
+        </ul>
+        <button class="btn-pricing" data-de>Pro kaufen</button>
+        <button class="btn-pricing" data-en>Get Pro</button>
+      </div>
+
+    </div>
+
+    <div class="pricing-guarantee">
+      <span>🛡️</span>
+      <span data-de>30-Tage-Geld-zurück-Garantie — kein Risiko, volle Zufriedenheit.</span>
+      <span data-en>30-day money-back guarantee — zero risk, full satisfaction.</span>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section id="testimonials">
+    <div class="section-header">
+      <div>
+        <p class="section-label" data-de>Kundenstimmen</p>
+        <p class="section-label" data-en>Customer Reviews</p>
+        <h2 class="section-title" data-de>Was unsere Fahrer<br>sagen</h2>
+        <h2 class="section-title" data-en>What our riders<br>say</h2>
+      </div>
+      <p class="section-desc" data-de>Mehr als 850 Motorradreisende haben bereits mit unserem Guide Zypern erkundet.</p>
+      <p class="section-desc" data-en>More than 850 motorcycle travellers have already explored Cyprus with our guide.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" data-de>„Der Guide hat unsere zweiwöchige Zypern-Tour komplett verwandelt. Die GPX-Dateien funktionierten auf Anhieb mit meinem Garmin, und die Unterkunftsempfehlungen waren gold wert. Absolut empfehlenswert!"</p>
+        <p class="testimonial-text" data-en>"The guide completely transformed our two-week Cyprus tour. The GPX files worked flawlessly on my Garmin, and the accommodation recommendations were worth their weight in gold. Absolutely recommended!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar av-1">🏍️</div>
+          <div>
+            <div class="author-name">Marcus K.</div>
+            <div class="author-location" data-de>München, Deutschland</div>
+            <div class="author-location" data-en>Munich, Germany</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" data-de>„Endlich ein Motorradführer, der wirklich auf die Bedürfnisse von Bikern eingeht! Die Infos zu Werkstätten haben uns in einer Pannensituation das Leben gerettet. Tolle Arbeit!"</p>
+        <p class="testimonial-text" data-en>"Finally a motorcycle guide that truly addresses riders' needs! The workshop info saved us in a breakdown situation. Brilliant work from a team that clearly loves riding!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar av-2">🌿</div>
+          <div>
+            <div class="author-name">Sabine &amp; Frank R.</div>
+            <div class="author-location" data-de>Wien, Österreich</div>
+            <div class="author-location" data-en>Vienna, Austria</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text" data-de>„Die Troodos-Route war das Highlight unserer Reise. Ohne diesen Guide hätten wir die versteckten Bergpässe nie gefunden. Bereits zum dritten Mal auf Zypern – und jedes Mal mit dem Guide."</p>
+        <p class="testimonial-text" data-en>"The Troodos route was the absolute highlight of our trip. Without this guide we'd never have found the hidden passes. Back on Cyprus for the third time — always with the guide."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar av-3">🔶</div>
+          <div>
+            <div class="author-name">Thomas B.</div>
+            <div class="author-location" data-de>Zürich, Schweiz</div>
+            <div class="author-location" data-en>Zurich, Switzerland</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">🏍️ <span>Zypern</span>Moto</div>
+        <p class="footer-about" data-de>Der führende digitale Motorradreiseführer für Zypern. Von Fahrern für Fahrer – mit Leidenschaft für die schönste Mittelmeerinsel.</p>
+        <p class="footer-about" data-en>The leading digital motorcycle travel guide for Cyprus. By riders, for riders — with passion for the most beautiful Mediterranean island.</p>
+        <div style="font-size:.8rem;opacity:.5;margin-top:8px">📧 info@zypernmoto.de</div>
+      </div>
+      <div>
+        <div class="footer-heading" data-de>Routen</div>
+        <div class="footer-heading" data-en>Routes</div>
+        <ul class="footer-links">
+          <li><a href="#routes" data-de>Küstenparadies</a><a href="#routes" data-en>Coastal Paradise</a></li>
+          <li><a href="#routes" data-de>Troodos-Gebirgspass</a><a href="#routes" data-en>Troodos Mountain Pass</a></li>
+          <li><a href="#routes" data-de>Antike Kulturroute</a><a href="#routes" data-en>Ancient Heritage Route</a></li>
+          <li><a href="#pricing" data-de>Alle 12+ Routen</a><a href="#pricing" data-en>All 12+ Routes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading" data-de>Rechtliches</div>
+        <div class="footer-heading" data-en>Legal</div>
+        <ul class="footer-links">
+          <li><a href="#" data-de>Impressum</a><a href="#" data-en>Imprint</a></li>
+          <li><a href="#" data-de>Datenschutz</a><a href="#" data-en>Privacy Policy</a></li>
+          <li><a href="#" data-de>AGB</a><a href="#" data-en>Terms &amp; Conditions</a></li>
+          <li><a href="#" data-de>Widerruf</a><a href="#" data-en>Cancellation Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-de>© 2026 ZypernMoto · Alle Rechte vorbehalten · Mit ❤️ für Motorradreisende</span>
+      <span data-en>© 2026 ZypernMoto · All rights reserved · Made with ❤️ for motorcycle travellers</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── Language Toggle ──
+    function setLang(lang) {
+      document.body.classList.remove('lang-de', 'lang-en');
+      document.body.classList.add('lang-' + lang);
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+    }
+
+    // ── Navbar scroll ──
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    document.getElementById('hamburger').addEventListener('click', function () {
+      document.getElementById('mobileMenu').classList.add('open');
+    });
+    document.getElementById('mobileClose').addEventListener('click', closeMobileMenu);
+
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    // ── Scroll reveal ──
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      els.forEach(function (el, i) {
+        el.style.transitionDelay = (i % 4) * 0.1 + 's';
+        observer.observe(el);
+      });
+    })();
+
+    // ── Init lang ──
+    setLang('de');
+  </script>
+</body>
+</html>
