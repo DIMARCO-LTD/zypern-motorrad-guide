@@ -1406,4 +1406,4 @@ margin-right: 24px;
 .hero-stats { flex-direction: column; gap: 4px; }
 .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 10px 0; margin-right: 0; }
 .hero-stat:last-child { border-bottom: none; }
-}`
+}
