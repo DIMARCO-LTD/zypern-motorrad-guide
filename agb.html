@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGB | ZypernMoto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terracotta: #C1440E;
+      --terracotta-light: #D96B3F;
+      --beige: #F5E6C8;
+      --beige-dark: #EDD5A3;
+      --beige-light: #FAF3E4;
+      --blue: #1B4F72;
+      --blue-dark: #143D58;
+      --blue-light: #2E6B95;
+      --white: #FFFFFF;
+      --text-dark: #1A1A1A;
+      --text-mid: #4A4A4A;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.10);
+      --shadow-md: 0 6px 24px rgba(0,0,0,.14);
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--beige-light);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* ── Language Bar ── */
+    .lang-bar {
+      position: fixed;
+      top: 0; right: 0;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      background: rgba(27,79,114,.92);
+      backdrop-filter: blur(8px);
+      border-bottom-left-radius: var(--radius);
+    }
+
+    .lang-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      padding: 4px 10px;
+      border: 1.5px solid rgba(255,255,255,.35);
+      border-radius: 20px;
+      background: transparent;
+      color: rgba(255,255,255,.65);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .lang-btn.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--white);
+    }
+
+    .lang-btn:hover:not(.active) {
+      border-color: rgba(255,255,255,.7);
+      color: var(--white);
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+      padding: 72px 5% 48px;
+      text-align: center;
+    }
+
+    .header-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+
+    .header-logo:hover { opacity: 1; }
+    .header-logo span { color: var(--terracotta-light); }
+
+    .page-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--beige);
+      opacity: .7;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: .9rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 8px;
+    }
+
+    /* ── TOC ── */
+    .toc-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      max-width: 820px;
+      margin: 32px auto 0;
+    }
+
+    .toc-title {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--beige);
+      opacity: .7;
+      margin-bottom: 14px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 24px;
+    }
+
+    .toc-list a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: color .2s;
+    }
+
+    .toc-list a:hover { color: var(--beige); }
+
+    .toc-num {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--terracotta-light);
+      min-width: 20px;
+    }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      max-width: 820px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 64px 0 80px;
+    }
+
+    .update-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--beige);
+      color: var(--text-mid);
+      font-size: .78rem;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+    }
+
+    .agb-block {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .3s;
+      scroll-margin-top: 24px;
+    }
+
+    .agb-block:hover { box-shadow: var(--shadow-md); }
+
+    .block-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .icon-blue  { background: rgba(27,79,114,.10); }
+    .icon-terra { background: rgba(193,68,14,.09); }
+    .icon-olive { background: rgba(93,109,62,.10); }
+    .icon-gold  { background: rgba(244,167,0,.10); }
+
+    .block-num {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .block-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--beige-dark);
+    }
+
+    .prose {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .prose:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--text-dark); font-weight: 600; }
+
+    .prose a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid var(--beige-dark);
+      transition: color .2s, border-color .2s;
+    }
+
+    .prose a:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+    .sub-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 20px 0 8px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--beige-light);
+      align-items: flex-start;
+    }
+
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .info-label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      min-width: 160px;
+      padding-top: 2px;
+    }
+
+    .info-value {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .info-value a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid var(--beige-dark);
+      transition: color .2s;
+    }
+
+    .info-value a:hover { color: var(--terracotta); }
+
+    .highlight-box {
+      background: var(--beige-light);
+      border-left: 4px solid var(--terracotta);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .highlight-box .prose { margin-bottom: 0; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 24px 5%;
+      font-size: .8rem;
+    }
+
+    footer a {
+      color: rgba(255,255,255,.6);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    footer a:hover { color: var(--beige); }
+
+    /* ── Language visibility ── */
+    [data-de], [data-en] { display: none; }
+    body.lang-de [data-de] { display: revert; }
+    body.lang-en [data-en] { display: revert; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .toc-list { grid-template-columns: 1fr; }
+      .agb-block { padding: 24px 20px; }
+      .info-row { flex-direction: column; gap: 4px; }
+      .info-label { min-width: unset; }
+    }
+  </style>
+</head>
+<body class="lang-de">
+
+  <!-- Language Bar -->
+  <div class="lang-bar">
+    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="header-logo">&#x1F3CD;&#xFE0F; <span>Zypern</span>Moto</a>
+    <div class="page-label" data-de>Rechtliche Informationen</div>
+    <div class="page-label" data-en>Legal Information</div>
+    <h1 class="page-title" data-de>Allgemeine Gesch&auml;ftsbedingungen</h1>
+    <h1 class="page-title" data-en>Terms &amp; Conditions</h1>
+    <p class="page-subtitle" data-de>Stand: Juni 2026</p>
+    <p class="page-subtitle" data-en>Version: June 2026</p>
+
+    <!-- TOC -->
+    <div class="toc-card">
+      <div class="toc-title" data-de>Inhalt</div>
+      <div class="toc-title" data-en>Contents</div>
+      <ul class="toc-list" data-de>
+        <li><a href="#geltungsbereich"><span class="toc-num">§1</span> Geltungsbereich</a></li>
+        <li><a href="#vertragsschluss"><span class="toc-num">§2</span> Vertragsschluss</a></li>
+        <li><a href="#leistungen"><span class="toc-num">§3</span> Leistungen</a></li>
+        <li><a href="#preise"><span class="toc-num">§4</span> Preise &amp; Zahlung</a></li>
+        <li><a href="#widerruf"><span class="toc-num">§5</span> Widerrufsrecht</a></li>
+        <li><a href="#nutzungsrechte"><span class="toc-num">§6</span> Nutzungsrechte</a></li>
+        <li><a href="#haftung"><span class="toc-num">§7</span> Haftung</a></li>
+        <li><a href="#schluss"><span class="toc-num">§8</span> Schlussbestimmungen</a></li>
+      </ul>
+      <ul class="toc-list" data-en>
+        <li><a href="#geltungsbereich"><span class="toc-num">§1</span> Scope</a></li>
+        <li><a href="#vertragsschluss"><span class="toc-num">§2</span> Contract Formation</a></li>
+        <li><a href="#leistungen"><span class="toc-num">§3</span> Services</a></li>
+        <li><a href="#preise"><span class="toc-num">§4</span> Prices &amp; Payment</a></li>
+        <li><a href="#widerruf"><span class="toc-num">§5</span> Right of Withdrawal</a></li>
+        <li><a href="#nutzungsrechte"><span class="toc-num">§6</span> Usage Rights</a></li>
+        <li><a href="#haftung"><span class="toc-num">§7</span> Liability</a></li>
+        <li><a href="#schluss"><span class="toc-num">§8</span> Final Provisions</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <div class="update-badge" data-de>&#x1F4C5; Stand: Juni 2026</div>
+    <div class="update-badge" data-en>&#x1F4C5; Version: June 2026</div>
+
+    <!-- Anbieter -->
+    <div class="agb-block">
+      <div class="block-icon icon-blue">&#x1F3E2;</div>
+      <h2 class="block-title" data-de>Anbieter</h2>
+      <h2 class="block-title" data-en>Provider</h2>
+      <div class="info-row">
+        <div class="info-label" data-de>Unternehmen</div>
+        <div class="info-label" data-en>Company</div>
+        <div class="info-value">ZypernMoto GmbH</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label" data-de>Anschrift</div>
+        <div class="info-label" data-en>Address</div>
+        <div class="info-value">Musterstra&szlig;e 42, 10115 Berlin, Deutschland</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label" data-de>E-Mail</div>
+        <div class="info-label" data-en>Email</div>
+        <div class="info-value"><a href="mailto:info@zypernmoto.de">info@zypernmoto.de</a></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label" data-de>Handelsregister</div>
+        <div class="info-label" data-en>Trade Register</div>
+        <div class="info-value" data-de>AG Berlin-Charlottenburg, HRB 123456 B</div>
+        <div class="info-value" data-en>District Court Berlin-Charlottenburg, HRB 123456 B</div>
+      </div>
+    </div>
+
+    <!-- §1 Geltungsbereich -->
+    <div class="agb-block" id="geltungsbereich">
+      <div class="block-icon icon-terra">&#x1F4DC;</div>
+      <div class="block-num">§ 1</div>
+      <h2 class="block-title" data-de>Geltungsbereich</h2>
+      <h2 class="block-title" data-en>Scope of Application</h2>
+      <p class="prose" data-de>Diese Allgemeinen Gesch&auml;ftsbedingungen (AGB) gelten f&uuml;r alle Vertr&auml;ge, die zwischen der ZypernMoto GmbH (nachfolgend &bdquo;Anbieter&ldquo;) und dem Kunden &uuml;ber die Website <strong>www.zypernmoto.de</strong> oder per E-Mail geschlossen werden.</p>
+      <p class="prose" data-de>Abweichende Bedingungen des Kunden werden nicht anerkannt, es sei denn, der Anbieter stimmt ihrer Geltung ausdr&uuml;cklich schriftlich zu. Diese AGB gelten auch f&uuml;r alle zuk&uuml;nftigen Gesch&auml;ftsbeziehungen, ohne dass es eines weiteren Hinweises bedarf.</p>
+      <p class="prose" data-en>These General Terms and Conditions (GTC) apply to all contracts concluded between ZypernMoto GmbH (hereinafter &ldquo;Provider&rdquo;) and the customer via the website <strong>www.zypernmoto.de</strong> or by email.</p>
+      <p class="prose" data-en>Deviating conditions of the customer shall not be recognised unless the Provider expressly agrees to their validity in writing. These GTC shall also apply to all future business relationships without the need for further reference.</p>
+    </div>
+
+    <!-- §2 Vertragsschluss -->
+    <div class="agb-block" id="vertragsschluss">
+      <div class="block-icon icon-olive">&#x1F91D;</div>
+      <div class="block-num">§ 2</div>
+      <h2 class="block-title" data-de>Vertragsschluss</h2>
+      <h2 class="block-title" data-en>Contract Formation</h2>
+      <p class="prose" data-de>Die Darstellung der Produkte und Dienstleistungen auf der Website stellt kein rechtlich bindendes Angebot, sondern eine Aufforderung zur Bestellung (invitatio ad offerendum) dar. Mit dem Abschluss des Bestellvorgangs und dem Klick auf den Button &bdquo;Jetzt kaufen&ldquo; gibt der Kunde ein verbindliches Angebot ab.</p>
+      <p class="prose" data-de>Der Vertrag kommt durch die Annahmeerkl&auml;rung des Anbieters zustande. Diese erfolgt entweder durch eine ausdr&uuml;ckliche Auftragsbestätigung per E-Mail oder durch die Bereitstellung der gekauften digitalen Inhalte. Der Anbieter ist berechtigt, Bestellungen ohne Angabe von Gr&uuml;nden abzulehnen.</p>
+      <p class="prose" data-en>The presentation of products and services on the website does not constitute a legally binding offer, but rather an invitation to order (invitatio ad offerendum). By completing the ordering process and clicking the &ldquo;Buy Now&rdquo; button, the customer submits a binding offer.</p>
+      <p class="prose" data-en>The contract is concluded by the Provider's declaration of acceptance, either by an express order confirmation by email or by the provision of the purchased digital content. The Provider is entitled to reject orders without stating reasons.</p>
+    </div>
+
+    <!-- §3 Leistungen -->
+    <div class="agb-block" id="leistungen">
+      <div class="block-icon icon-blue">&#x1F5FA;&#xFE0F;</div>
+      <div class="block-num">§ 3</div>
+      <h2 class="block-title" data-de>Leistungsbeschreibung</h2>
+      <h2 class="block-title" data-en>Description of Services</h2>
+
+      <h3 class="sub-title" data-de>Digitale Produkte</h3>
+      <h3 class="sub-title" data-en>Digital Products</h3>
+      <p class="prose" data-de>Der Anbieter bietet digitale Reisef&uuml;hrer, Routenpakete (inkl. GPX-Dateien), Offline-Karten sowie zugeh&ouml;rige Informationsmaterialien in elektronischer Form an. Die Bereitstellung erfolgt nach Zahlungseingang per Download-Link oder &uuml;ber einen passwortgesch&uuml;tzten Benutzerbereich.</p>
+      <p class="prose" data-en>The Provider offers digital travel guides, route packages (including GPX files), offline maps and associated information materials in electronic form. These are made available after receipt of payment via a download link or via a password-protected user area.</p>
+
+      <h3 class="sub-title" data-de>Verf&uuml;gbarkeit</h3>
+      <h3 class="sub-title" data-en>Availability</h3>
+      <p class="prose" data-de>Der Anbieter bem&uuml;ht sich um eine st&auml;ndige Verf&uuml;gbarkeit der digitalen Inhalte, &uuml;bernimmt jedoch keine Garantie f&uuml;r eine unterbrechungsfreie Verf&uuml;gbarkeit. Wartungsarbeiten werden nach M&ouml;glichkeit au&szlig;erhalb der Hauptnutzungszeiten durchgef&uuml;hrt.</p>
+      <p class="prose" data-en>The Provider endeavours to ensure constant availability of digital content but does not guarantee uninterrupted availability. Maintenance work is carried out outside peak usage times where possible.</p>
+
+      <div class="highlight-box" data-de>
+        <p class="prose"><strong>Hinweis:</strong> Alle Routeninformationen wurden sorgf&auml;ltig recherchiert. Stra&szlig;enverh&auml;ltnisse, Sperrungen und &ouml;rtliche Gegebenheiten k&ouml;nnen sich &auml;ndern. Der Anbieter empfiehlt, aktuelle Informationen vor Antritt der Reise einzuholen.</p>
+      </div>
+      <div class="highlight-box" data-en>
+        <p class="prose"><strong>Note:</strong> All route information has been carefully researched. Road conditions, closures and local circumstances can change. The Provider recommends obtaining up-to-date information before starting your journey.</p>
+      </div>
+    </div>
+
+    <!-- §4 Preise & Zahlung -->
+    <div class="agb-block" id="preise">
+      <div class="block-icon icon-terra">&#x1F4B3;</div>
+      <div class="block-num">§ 4</div>
+      <h2 class="block-title" data-de>Preise und Zahlung</h2>
+      <h2 class="block-title" data-en>Prices and Payment</h2>
+      <p class="prose" data-de>Alle angegebenen Preise sind Endpreise in Euro und enthalten die gesetzliche Mehrwertsteuer. Der Anbieter beh&auml;lt sich das Recht vor, die Preise jederzeit zu &auml;ndern. Ma&szlig;geblich ist der zum Zeitpunkt der Bestellung g&uuml;ltige Preis.</p>
+      <p class="prose" data-de>Die Zahlung erfolgt im Voraus. Akzeptierte Zahlungsmethoden sind Kreditkarte (Visa, Mastercard), PayPal sowie SEPA-Lastschrift. Die Verarbeitung der Zahlungsdaten erfolgt &uuml;ber zertifizierte Zahlungsdienstleister (Stripe, PayPal). Der Anbieter selbst speichert keine Zahlungsdaten.</p>
+      <p class="prose" data-de>Bei Nichtzahlung oder R&uuml;ckbuchung beh&auml;lt sich der Anbieter vor, den Zugang zu den digitalen Inhalten zu sperren bis die ausstehenden Betr&auml;ge beglichen sind.</p>
+      <p class="prose" data-en>All prices stated are final prices in euros and include statutory VAT. The Provider reserves the right to change prices at any time. The price valid at the time of the order shall apply.</p>
+      <p class="prose" data-en>Payment is made in advance. Accepted payment methods are credit card (Visa, Mastercard), PayPal and SEPA direct debit. Payment data is processed by certified payment service providers (Stripe, PayPal). The Provider itself does not store any payment data.</p>
+      <p class="prose" data-en>In the event of non-payment or chargeback, the Provider reserves the right to block access to the digital content until outstanding amounts have been settled.</p>
+    </div>
+
+    <!-- §5 Widerrufsrecht -->
+    <div class="agb-block" id="widerruf">
+      <div class="block-icon icon-gold">&#x21A9;&#xFE0F;</div>
+      <div class="block-num">§ 5</div>
+      <h2 class="block-title" data-de>Widerrufsrecht und Widerrufsbelehrung</h2>
+      <h2 class="block-title" data-en>Right of Withdrawal</h2>
+
+      <h3 class="sub-title" data-de>Widerrufsrecht f&uuml;r Verbraucher</h3>
+      <h3 class="sub-title" data-en>Right of Withdrawal for Consumers</h3>
+      <p class="prose" data-de>Verbrauchern steht grunds&auml;tzlich ein Widerrufsrecht zu. Sie haben das Recht, binnen <strong>14 Tagen</strong> ohne Angabe von Gr&uuml;nden diesen Vertrag zu widerrufen. Die Widerrufsfrist betr&auml;gt 14 Tage ab dem Tag des Vertragsabschlusses.</p>
+      <p class="prose" data-de>Um Ihr Widerrufsrecht auszu&uuml;ben, m&uuml;ssen Sie uns (ZypernMoto GmbH, Musterstra&szlig;e 42, 10115 Berlin, E-Mail: <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a>) mittels einer eindeutigen Erkl&auml;rung (z. B. ein per Post versandter Brief oder eine E-Mail) &uuml;ber Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.</p>
+      <p class="prose" data-en>Consumers generally have a right of withdrawal. You have the right to withdraw from this contract within <strong>14 days</strong> without giving reasons. The withdrawal period is 14 days from the date of conclusion of the contract.</p>
+      <p class="prose" data-en>To exercise your right of withdrawal, you must notify us (ZypernMoto GmbH, Musterstra&szlig;e 42, 10115 Berlin, email: <a href="mailto:widerruf@zypernmoto.de">widerruf@zypernmoto.de</a>) by means of a clear statement (e.g. a letter sent by post or an email) of your decision to withdraw from this contract.</p>
+
+      <div class="highlight-box" data-de>
+        <p class="prose"><strong>Erlöschen des Widerrufsrechts bei digitalen Inhalten:</strong> Das Widerrufsrecht erlischt bei digitalen Inhalten (Downloads), wenn der Anbieter mit der Ausf&uuml;hrung des Vertrages begonnen hat und der Verbraucher ausdr&uuml;cklich zugestimmt hat, dass der Anbieter vor Ablauf der Widerrufsfrist mit der Ausf&uuml;hrung beginnt und seine Kenntnis davon best&auml;tigt hat, dass er durch seine Zustimmung sein Widerrufsrecht verliert (§ 356 Abs. 5 BGB).</p>
+      </div>
+      <div class="highlight-box" data-en>
+        <p class="prose"><strong>Expiry of the right of withdrawal for digital content:</strong> The right of withdrawal expires for digital content (downloads) if the Provider has begun performance of the contract and the consumer has expressly agreed that the Provider may begin performance before the expiry of the withdrawal period and has confirmed their knowledge that they lose their right of withdrawal by giving their consent (§ 356 (5) BGB).</p>
+      </div>
+
+      <h3 class="sub-title" data-de>30-Tage-Zufriedenheitsgarantie</h3>
+      <h3 class="sub-title" data-en>30-Day Satisfaction Guarantee</h3>
+      <p class="prose" data-de>Unabh&auml;ngig vom gesetzlichen Widerrufsrecht gew&auml;hrt der Anbieter eine freiwillige <strong>30-Tage-Geld-zur&uuml;ck-Garantie</strong>. Wenn Sie mit dem Produkt nicht zufrieden sind, erstatten wir Ihnen den vollen Kaufpreis innerhalb von 30 Tagen ab Kauf, ohne R&uuml;ckfragen. Senden Sie hierf&uuml;r eine E-Mail an <a href="mailto:info@zypernmoto.de">info@zypernmoto.de</a> mit Ihrer Bestellnummer.</p>
+      <p class="prose" data-en>Independently of the statutory right of withdrawal, the Provider grants a voluntary <strong>30-day money-back guarantee</strong>. If you are not satisfied with the product, we will refund the full purchase price within 30 days of purchase, no questions asked. To do so, send an email to <a href="mailto:info@zypernmoto.de">info@zypernmoto.de</a> with your order number.</p>
+    </div>
+
+    <!-- §6 Nutzungsrechte -->
+    <div class="agb-block" id="nutzungsrechte">
+      <div class="block-icon icon-olive">&#x00A9;</div>
+      <div class="block-num">§ 6</div>
+      <h2 class="block-title" data-de>Nutzungsrechte und Urheberrecht</h2>
+      <h2 class="block-title" data-en>Usage Rights and Copyright</h2>
+      <p class="prose" data-de>Mit dem Kauf eines digitalen Produkts erh&auml;lt der Kunde ein einfaches, nicht &uuml;bertragbares und nicht unterlizenzierbares Recht zur privaten, nicht-kommerziellen Nutzung des erworbenen Inhalts. Die Nutzung beschr&auml;nkt sich auf den Eigengebrauch des Erwerbers.</p>
+      <p class="prose" data-de>Jede Vervielf&auml;ltigung, Verbreitung, Ver&ouml;ffentlichung, Weitergabe, &Uuml;bersetzung oder sonstige Verwertung der Inhalte &ndash; ganz oder in Teilen &ndash; ist ohne ausdr&uuml;ckliche schriftliche Genehmigung des Anbieters untersagt. Insbesondere ist die Weitergabe von Zugangsdaten oder Download-Links an Dritte nicht gestattet.</p>
+      <p class="prose" data-de>S&auml;mtliche Inhalte (Texte, Karten, GPX-Daten, Grafiken, Fotos) unterliegen dem Urheberrecht des Anbieters oder der jeweiligen Rechteinhaber. Bei Verst&ouml;&szlig;en beh&auml;lt sich der Anbieter die Geltendmachung von Unterlassungs- und Schadensersatzanspr&uuml;chen vor.</p>
+      <p class="prose" data-en>Upon purchasing a digital product, the customer receives a simple, non-transferable and non-sub-licensable right to use the purchased content for private, non-commercial purposes. Use is limited to the purchaser's own personal use.</p>
+      <p class="prose" data-en>Any reproduction, distribution, publication, forwarding, translation or other exploitation of the content &mdash; in whole or in part &mdash; is prohibited without the express written permission of the Provider. In particular, passing on access data or download links to third parties is not permitted.</p>
+      <p class="prose" data-en>All content (texts, maps, GPX data, graphics, photos) is subject to the copyright of the Provider or the respective rights holders. In the event of infringement, the Provider reserves the right to assert claims for injunctive relief and damages.</p>
+    </div>
+
+    <!-- §7 Haftung -->
+    <div class="agb-block" id="haftung">
+      <div class="block-icon icon-terra">&#x2696;&#xFE0F;</div>
+      <div class="block-num">§ 7</div>
+      <h2 class="block-title" data-de>Haftungsbeschr&auml;nkung</h2>
+      <h2 class="block-title" data-en>Limitation of Liability</h2>
+      <p class="prose" data-de>Der Anbieter haftet unbeschr&auml;nkt f&uuml;r Sch&auml;den, die auf einer vors&auml;tzlichen oder grob fahrl&auml;ssigen Pflichtverletzung des Anbieters, seiner gesetzlichen Vertreter oder Erf&uuml;llungsgehilfen beruhen, sowie f&uuml;r Sch&auml;den aus der Verletzung des Lebens, des K&ouml;rpers oder der Gesundheit.</p>
+      <p class="prose" data-de>F&uuml;r die leicht fahrl&auml;ssige Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) haftet der Anbieter der H&ouml;he nach begrenzt auf den bei Vertragsschluss vorhersehbaren, vertragstypischen Schaden. F&uuml;r die leicht fahrl&auml;ssige Verletzung nicht wesentlicher Vertragspflichten haftet der Anbieter nicht.</p>
+      <p class="prose" data-de>Der Anbieter &uuml;bernimmt keine Haftung f&uuml;r die Aktualit&auml;t, Vollst&auml;ndigkeit und Richtigkeit der bereitgestellten Routeninformationen sowie f&uuml;r Sch&auml;den, die durch die Nutzung der Routeninformationen entstehen. Das Fahren auf den beschriebenen Routen erfolgt auf eigene Gefahr.</p>
+      <p class="prose" data-en>The Provider is liable without limitation for damages based on intentional or grossly negligent breach of duty by the Provider, its legal representatives or vicarious agents, as well as for damages resulting from injury to life, body or health.</p>
+      <p class="prose" data-en>For the slightly negligent breach of material contractual obligations (cardinal obligations), the Provider's liability is limited in amount to the foreseeable, contract-typical damage at the time of conclusion of the contract. The Provider is not liable for the slightly negligent breach of non-material contractual obligations.</p>
+      <p class="prose" data-en>The Provider accepts no liability for the currency, completeness and accuracy of the route information provided, nor for damages arising from the use of route information. Riding the described routes is at your own risk.</p>
+    </div>
+
+    <!-- §8 Schlussbestimmungen -->
+    <div class="agb-block" id="schluss">
+      <div class="block-icon icon-blue">&#x1F4CB;</div>
+      <div class="block-num">§ 8</div>
+      <h2 class="block-title" data-de>Schlussbestimmungen</h2>
+      <h2 class="block-title" data-en>Final Provisions</h2>
+
+      <h3 class="sub-title" data-de>Anwendbares Recht</h3>
+      <h3 class="sub-title" data-en>Applicable Law</h3>
+      <p class="prose" data-de>Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG). Gegen&uuml;ber Verbrauchern mit gew&ouml;hnlichem Aufenthalt in einem anderen EU-Mitgliedstaat gelten zus&auml;tzlich die zwingenden Verbraucherschutzvorschriften des jeweiligen Landes.</p>
+      <p class="prose" data-en>The law of the Federal Republic of Germany applies, excluding the UN Convention on Contracts for the International Sale of Goods (CISG). In relation to consumers habitually resident in another EU member state, the mandatory consumer protection provisions of the respective country shall additionally apply.</p>
+
+      <h3 class="sub-title" data-de>Gerichtsstand</h3>
+      <h3 class="sub-title" data-en>Jurisdiction</h3>
+      <p class="prose" data-de>Soweit der Kunde Kaufmann, juristische Person des &ouml;ffentlichen Rechts oder &ouml;ffentlich-rechtliches Sonderverm&ouml;gen ist, ist ausschlie&szlig;licher Gerichtsstand Berlin. Im &Uuml;brigen gelten die gesetzlichen Zust&auml;ndigkeitsvorschriften.</p>
+      <p class="prose" data-en>Insofar as the customer is a merchant, a legal entity under public law or a special fund under public law, the exclusive place of jurisdiction is Berlin. Otherwise, the statutory provisions on jurisdiction shall apply.</p>
+
+      <h3 class="sub-title" data-de>Salvatorische Klausel</h3>
+      <h3 class="sub-title" data-en>Severability Clause</h3>
+      <p class="prose" data-de>Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam oder undurchf&uuml;hrbar sein oder werden, ber&uuml;hrt dies die G&uuml;ltigkeit der &uuml;brigen Bestimmungen nicht. Anstelle der unwirksamen Bestimmung gilt die gesetzlich zul&auml;ssige Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am n&auml;chsten kommt.</p>
+      <p class="prose" data-en>Should individual provisions of these GTC be or become wholly or partially invalid or unenforceable, this shall not affect the validity of the remaining provisions. In place of the invalid provision, the legally permissible regulation that comes closest to the economic purpose of the invalid provision shall apply.</p>
+
+      <h3 class="sub-title" data-de>&Auml;nderungen der AGB</h3>
+      <h3 class="sub-title" data-en>Amendments to the GTC</h3>
+      <p class="prose" data-de>Der Anbieter beh&auml;lt sich das Recht vor, diese AGB mit Wirkung f&uuml;r die Zukunft zu &auml;ndern. &Auml;nderungen werden den Kunden per E-Mail mitgeteilt. Widerspricht der Kunde nicht innerhalb von <strong>30 Tagen</strong> nach Zugang der Mitteilung, gelten die ge&auml;nderten AGB als akzeptiert.</p>
+      <p class="prose" data-en>The Provider reserves the right to amend these GTC with effect for the future. Changes will be communicated to customers by email. If the customer does not object within <strong>30 days</strong> of receipt of the notification, the amended GTC shall be deemed accepted.</p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div style="margin-bottom:8px">
+      <a href="index.html" data-de>&larr; Zur&uuml;ck zur Startseite</a>
+      <a href="index.html" data-en>&larr; Back to Homepage</a>
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      <a href="impressum.html" data-de>Impressum</a>
+      <a href="impressum.html" data-en>Legal Notice</a>
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      <a href="datenschutz.html" data-de>Datenschutz</a>
+      <a href="datenschutz.html" data-en>Privacy Policy</a>
+    </div>
+    <span data-de>&copy; 2026 ZypernMoto &middot; Alle Rechte vorbehalten</span>
+    <span data-en>&copy; 2026 ZypernMoto &middot; All rights reserved</span>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.body.classList.remove('lang-de', 'lang-en');
+      document.body.classList.add('lang-' + lang);
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+    }
+    setLang('de');
+  </script>
+</body>
+</html>
