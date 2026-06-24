@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sicherheit und rechtliche Informationen für Motorradfahrer in Zypern. Führerschein, Helmpflicht, Linksverkehr. Safety and legal info for motorcycle riders in Cyprus." />
+  <title>Sicherheit | Safety – Motorrad Guide Zypern</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Big LHT warning */
+    .lht-big {
+      background: #D32F2F;
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      margin-bottom: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lht-big::before {
+      content: '←';
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8rem;
+      opacity: 0.1;
+      font-family: 'Arial', sans-serif;
+      font-weight: 900;
+    }
+
+    .lht-big-inner {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lht-big-icon {
+      font-size: 3.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .lht-big h2 {
+      color: var(--white);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      margin-bottom: 12px;
+    }
+
+    .lht-big p {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.97rem;
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    .lht-tips {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .lht-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .lht-tip::before {
+      content: '•';
+      color: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .section-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: 0 4px 20px var(--shadow);
+      margin-bottom: 32px;
+    }
+
+    .section-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue-deep);
+    }
+
+    .section-box-icon { font-size: 1.6rem; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 700px) {
+      .two-col { grid-template-columns: 1fr; }
+      .lht-big-inner { flex-direction: column; gap: 16px; }
+      .lht-big::before { display: none; }
+    }
+
+    .tip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--beige-dark);
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .tip-item:last-child { border-bottom: none; }
+
+    .tip-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--beige-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .badge-ok {
+      display: inline-block;
+      background: #2E7D32;
+      color: var(--white);
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .badge-warn {
+      display: inline-block;
+      background: #E65100;
+      color: var(--white);
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .emergency-box {
+      background: var(--blue-deep);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      margin-top: 40px;
+    }
+
+    .emergency-box h3 { color: var(--white); font-size: 1.2rem; margin-bottom: 20px; }
+
+    .emergency-numbers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+
+    .emergency-number {
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .emerg-num {
+      font-size: 1.8rem;
+      font-family: 'Arial', sans-serif;
+      font-weight: 700;
+      color: var(--terracotta-light);
+      display: block;
+    }
+
+    .emerg-label {
+      font-size: 0.78rem;
+      opacity: 0.7;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Language-specific content */
+    .lang-de .en-only { display: none; }
+    .lang-en .de-only { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" aria-label="Main navigation">
+  <div class="navbar-inner">
+    <a class="navbar-logo" href="index.html">
+      <span class="logo-icon">🏍️</span>
+      <span>Zypern<strong>Guide</strong></span>
+    </a>
+
+    <ul class="navbar-nav" role="list">
+      <li><a class="nav-link" href="index.html" data-i18n="nav_home">Startseite</a></li>
+      <li><a class="nav-link" href="routen.html" data-i18n="nav_routes">Routen</a></li>
+      <li><a class="nav-link" href="sicherheit.html" data-i18n="nav_safety">Sicherheit</a></li>
+      <li><a class="nav-link" href="index.html#buy" data-i18n="nav_buy">Kaufen</a></li>
+    </ul>
+
+    <div class="navbar-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="de">DE</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="section-label" data-i18n="safety_page_label">Sicherheit &amp; Recht</span>
+    <h1 data-i18n="safety_page_title">Sicher fahren auf Zypern</h1>
+    <p data-i18n="safety_page_desc">
+      Alles, was du vor deiner Reise wissen musst: Führerschein, Helmpflicht und die wichtigste Regel überhaupt.
+    </p>
+  </div>
+</section>
+
+<!-- ===== CONTENT ===== -->
+<section class="section-pad bg-beige">
+  <div class="container">
+
+    <!-- BIG LEFT-HAND TRAFFIC WARNING -->
+    <div class="lht-big fade-up" role="alert">
+      <div class="lht-big-inner">
+        <div class="lht-big-icon">⚠️</div>
+        <div>
+          <h2 id="lht-warning-de" class="de-only">ACHTUNG: LINKSVERKEHR!</h2>
+          <h2 id="lht-warning-en" class="en-only" style="display:none">WARNING: LEFT-HAND TRAFFIC!</h2>
+          <p class="de-only">
+            Zypern ist ein ehemaliges britisches Territorium – hier gilt <strong>Linksverkehr</strong>!
+            Du fährst auf der linken Seite, überholt wird rechts. Das Lenkrad zypiotischer Mietwagen
+            sitzt rechts. Diese Umstellung ist die <strong>größte Gefahrenquelle</strong> für Fahrer
+            aus dem europäischen Festland. Unterschätze sie nicht.
+          </p>
+          <p class="en-only" style="display:none">
+            Cyprus is a former British territory — <strong>left-hand traffic</strong> applies here!
+            You drive on the left, overtake on the right. Local rental vehicles have right-hand steering.
+            This adjustment is the <strong>single biggest hazard</strong> for riders from mainland
+            Europe. Do not underestimate it.
+          </p>
+          <div class="lht-tips">
+            <div class="lht-tip de-only">Gib dir am ersten Tag mindestens 1–2 Stunden auf leeren Nebenstraßen zum Eingewöhnen</div>
+            <div class="lht-tip de-only">An Kreuzungen immer zweimal schauen – der Reflex sagt dir die falsche Richtung</div>
+            <div class="lht-tip de-only">Besonders gefährlich: nach einem Stopp oder auf Einbahnstraßen wieder einzubiegen</div>
+            <div class="lht-tip de-only">Nutze deinen Mitfahrer oder ein GPS, das dich aktiv an den Linksverkehr erinnert</div>
+            <div class="lht-tip en-only" style="display:none">Give yourself at least 1–2 hours on quiet side roads on day one to adjust</div>
+            <div class="lht-tip en-only" style="display:none">At junctions always look both ways — your reflex will point you the wrong way</div>
+            <div class="lht-tip en-only" style="display:none">Most dangerous: re-joining traffic after a stop or on one-way streets</div>
+            <div class="lht-tip en-only" style="display:none">Use a GPS that can audibly remind you to keep left</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LICENCE & LEGAL -->
+    <div class="two-col">
+
+      <!-- Führerschein -->
+      <div class="section-box fade-up">
+        <h3>
+          <span class="section-box-icon">📄</span>
+          <span class="de-only">Führerschein &amp; Dokumente</span>
+          <span class="en-only" style="display:none">Licence &amp; Documents</span>
+        </h3>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th class="de-only">Anforderung</th>
+              <th class="de-only">Details</th>
+              <th class="en-only" style="display:none">Requirement</th>
+              <th class="en-only" style="display:none">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong class="de-only">EU-Führerschein</strong><strong class="en-only" style="display:none">EU Licence</strong></td>
+              <td>
+                <span class="badge-ok">✓ Gültig / Valid</span>
+                <br><small class="de-only">Klasse A oder A2 für Motorräder über 125 ccm</small>
+                <small class="en-only" style="display:none">Category A or A2 for motorcycles over 125cc</small>
+              </td>
+            </tr>
+            <tr>
+              <td><strong class="de-only">Internationaler Führerschein</strong><strong class="en-only" style="display:none">Int'l Driving Permit</strong></td>
+              <td>
+                <span class="badge-ok">✓ Empfohlen / Recommended</span>
+                <br><small class="de-only">Nicht Pflicht für EU-Bürger, aber empfehlenswert</small>
+                <small class="en-only" style="display:none">Not mandatory for EU citizens, but recommended</small>
+              </td>
+            </tr>
+            <tr>
+              <td><strong class="de-only">Nicht-EU-Führerschein</strong><strong class="en-only" style="display:none">Non-EU Licence</strong></td>
+              <td>
+                <span class="badge-warn">⚠ IDP Pflicht / Required</span>
+                <br><small class="de-only">Internationaler Führerschein (IDP) erforderlich</small>
+                <small class="en-only" style="display:none">International Driving Permit (IDP) required</small>
+              </td>
+            </tr>
+            <tr>
+              <td><strong class="de-only">Mindestalter Motorrad</strong><strong class="en-only" style="display:none">Minimum age (motorcycle)</strong></td>
+              <td>
+                <small class="de-only">18 Jahre (125 ccm), 24 Jahre (über 35 kW)</small>
+                <small class="en-only" style="display:none">18 years (125cc), 24 years (over 35 kW)</small>
+              </td>
+            </tr>
+            <tr>
+              <td><strong class="de-only">Fahrzeugdokumente</strong><strong class="en-only" style="display:none">Vehicle Documents</strong></td>
+              <td>
+                <small class="de-only">Zulassung, Versicherungsnachweis immer mitführen</small>
+                <small class="en-only" style="display:none">Registration, proof of insurance – always carry</small>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Helmgesetze -->
+      <div class="section-box fade-up">
+        <h3>
+          <span class="section-box-icon">⛑️</span>
+          <span class="de-only">Helmpflicht &amp; Ausrüstung</span>
+          <span class="en-only" style="display:none">Helmet Laws &amp; Equipment</span>
+        </h3>
+        <div class="tip-list">
+          <div class="tip-item">
+            <div class="tip-icon">⛑️</div>
+            <div>
+              <strong class="de-only">Helmpflicht – absolut</strong>
+              <strong class="en-only" style="display:none">Helmet mandatory – absolutely</strong>
+              <br>
+              <span class="de-only">Helm ist für Fahrer und Beifahrer gesetzlich vorgeschrieben. Kein Helm = hohes Bußgeld + Punkte.</span>
+              <span class="en-only" style="display:none">Helmet is legally required for rider and passenger. No helmet = heavy fine + points.</span>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">👗</div>
+            <div>
+              <strong class="de-only">Schutzkleidung</strong>
+              <strong class="en-only" style="display:none">Protective Clothing</strong>
+              <br>
+              <span class="de-only">Nicht gesetzlich vorgeschrieben, aber dringend empfohlen. Im Sommer: Belüftete Motorradjacke, kein T-Shirt.</span>
+              <span class="en-only" style="display:none">Not legally required, but strongly recommended. In summer: ventilated motorcycle jacket, no t-shirt.</span>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🥾</div>
+            <div>
+              <strong class="de-only">Schuhe</strong>
+              <strong class="en-only" style="display:none">Footwear</strong>
+              <br>
+              <span class="de-only">Motorradstiefel empfohlen. Offene Sandalen auf dem Motorrad sind verboten.</span>
+              <span class="en-only" style="display:none">Motorcycle boots recommended. Open sandals while riding are prohibited.</span>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🔦</div>
+            <div>
+              <strong class="de-only">Licht</strong>
+              <strong class="en-only" style="display:none">Lights</strong>
+              <br>
+              <span class="de-only">Frontlicht auch tagsüber eingeschaltet halten – gesetzlich vorgeschrieben.</span>
+              <span class="en-only" style="display:none">Keep headlight on even during the day — legally required.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAFFIC RULES -->
+    <div class="section-box fade-up">
+      <h3>
+        <span class="section-box-icon">🚦</span>
+        <span class="de-only">Verkehrsregeln &amp; Tempolimits</span>
+        <span class="en-only" style="display:none">Traffic Rules &amp; Speed Limits</span>
+      </h3>
+      <div class="two-col">
+        <div>
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th class="de-only">Straßentyp</th>
+                <th class="de-only">Tempolimit</th>
+                <th class="en-only" style="display:none">Road Type</th>
+                <th class="en-only" style="display:none">Speed Limit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="de-only">Innerorts</td>
+                <td class="de-only"><strong>50 km/h</strong></td>
+                <td class="en-only" style="display:none">Built-up areas</td>
+                <td class="en-only" style="display:none"><strong>50 km/h</strong></td>
+              </tr>
+              <tr>
+                <td class="de-only">Landstraße</td>
+                <td class="de-only"><strong>80 km/h</strong></td>
+                <td class="en-only" style="display:none">Rural roads</td>
+                <td class="en-only" style="display:none"><strong>80 km/h</strong></td>
+              </tr>
+              <tr>
+                <td class="de-only">Autobahn/Schnellstraße</td>
+                <td class="de-only"><strong>100 km/h</strong></td>
+                <td class="en-only" style="display:none">Motorway / expressway</td>
+                <td class="en-only" style="display:none"><strong>100 km/h</strong></td>
+              </tr>
+              <tr>
+                <td class="de-only">Troodos-Gebirge (Serpentinen)</td>
+                <td class="de-only"><strong>50 km/h</strong></td>
+                <td class="en-only" style="display:none">Troodos mountains (hairpins)</td>
+                <td class="en-only" style="display:none"><strong>50 km/h</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tip-list">
+          <div class="tip-item">
+            <div class="tip-icon">🍺</div>
+            <div>
+              <strong class="de-only">Alkohol am Steuer</strong>
+              <strong class="en-only" style="display:none">Drink driving</strong>
+              <br>
+              <span class="de-only">Promillegrenze: 0,5‰ (0,22‰ für Neufahrer). Bei Motorradfahrern wird streng kontrolliert.</span>
+              <span class="en-only" style="display:none">Limit: 0.5‰ (0.22‰ for new riders). Enforcement is strict for motorcyclists.</span>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">📱</div>
+            <div>
+              <strong class="de-only">Handy am Steuer</strong>
+              <strong class="en-only" style="display:none">Mobile phone while riding</strong>
+              <br>
+              <span class="de-only">Verboten. Nur Freisprechanlage erlaubt. Hohe Geldstrafe.</span>
+              <span class="en-only" style="display:none">Prohibited. Hands-free only. Heavy fine.</span>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🛣️</div>
+            <div>
+              <strong class="de-only">Fahrspurwechsel</strong>
+              <strong class="en-only" style="display:none">Lane discipline</strong>
+              <br>
+              <span class="de-only">Immer links fahren, nur zum Überholen rechts. Rückkehr zur linken Spur nach dem Überholen.</span>
+              <span class="en-only" style="display:none">Always keep left, move right only to overtake. Return to left lane after overtaking.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAFETY TIPS GRID -->
+    <div class="safety-grid fade-up">
+
+      <div class="safety-card">
+        <div class="safety-card-icon">🌡️</div>
+        <h3 class="de-only">Hitze &amp; Wetter</h3>
+        <h3 class="en-only" style="display:none">Heat &amp; Weather</h3>
+        <ul>
+          <li class="de-only">Im Juli/August bis 42°C – frühmorgens oder abends fahren</li>
+          <li class="en-only" style="display:none">July/August up to 42°C – ride early morning or evening</li>
+          <li class="de-only">Viel Wasser trinken, alle 1,5 Std. eine Pause</li>
+          <li class="en-only" style="display:none">Drink plenty of water, break every 1.5 hours</li>
+          <li class="de-only">Sonnencreme unter der Schutzkleidung nicht vergessen</li>
+          <li class="en-only" style="display:none">Apply sunscreen under protective clothing</li>
+          <li class="de-only">Im Troodos kann es kühler und windig sein – Schichten einpacken</li>
+          <li class="en-only" style="display:none">In the Troodos it can be cooler and windy — pack layers</li>
+        </ul>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-card-icon">🏔️</div>
+        <h3 class="de-only">Bergstraßen</h3>
+        <h3 class="en-only" style="display:none">Mountain Roads</h3>
+        <ul>
+          <li class="de-only">Enge Serpentinen im Troodos – langsam und defensiv fahren</li>
+          <li class="en-only" style="display:none">Tight hairpins in the Troodos — ride slow and defensively</li>
+          <li class="de-only">Gegenverkehr auf der Mitte der Straße – immer am Rand bleiben</li>
+          <li class="en-only" style="display:none">Oncoming traffic uses the centre — always hug the edge</li>
+          <li class="de-only">Schotterwege und Kiesel auf den Passhöhen möglich</li>
+          <li class="en-only" style="display:none">Gravel and loose stones likely on mountain passes</li>
+          <li class="de-only">Nebel und Regen von Oktober bis März – Sicht kann stark abnehmen</li>
+          <li class="en-only" style="display:none">Fog and rain Oct–Mar — visibility can drop sharply</li>
+        </ul>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-card-icon">🐐</div>
+        <h3 class="de-only">Wildtiere auf der Straße</h3>
+        <h3 class="en-only" style="display:none">Wildlife on Roads</h3>
+        <ul>
+          <li class="de-only">Ziegen und Schafe laufen frei durch Bergdörfer</li>
+          <li class="en-only" style="display:none">Goats and sheep roam freely through mountain villages</li>
+          <li class="de-only">Wilde Esel auf der Karpaz-Halbinsel – dämmerungsaktiv</li>
+          <li class="en-only" style="display:none">Wild donkeys on the Karpaz peninsula — most active at dusk</li>
+          <li class="de-only">Mouflon-Widder im Zederntal – bei Nähe Abstand halten</li>
+          <li class="en-only" style="display:none">Mouflon rams in Cedar Valley — keep distance if close</li>
+          <li class="de-only">Geschwindigkeit in Dörfern deutlich reduzieren</li>
+          <li class="en-only" style="display:none">Reduce speed significantly when entering villages</li>
+        </ul>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-card-icon">⛽</div>
+        <h3 class="de-only">Praktische Tipps</h3>
+        <h3 class="en-only" style="display:none">Practical Tips</h3>
+        <ul>
+          <li class="de-only">Tank immer in Städten volltanken – Bergdörfer haben selten Zapfsäulen</li>
+          <li class="en-only" style="display:none">Always fill up in towns — mountain villages rarely have fuel</li>
+          <li class="de-only">Offline-Karte herunterladen (maps.me oder Google Maps offline)</li>
+          <li class="en-only" style="display:none">Download offline maps (maps.me or Google Maps offline)</li>
+          <li class="de-only">Europäische Krankenversicherungskarte (EHIC) mitbringen</li>
+          <li class="en-only" style="display:none">Bring European Health Insurance Card (EHIC)</li>
+          <li class="de-only">Reiseversicherung mit Motorradklausel dringend empfohlen</li>
+          <li class="en-only" style="display:none">Travel insurance with motorcycle clause strongly recommended</li>
+        </ul>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-card-icon">🏨</div>
+        <h3 class="de-only">Nordteil Zypern</h3>
+        <h3 class="en-only" style="display:none">Northern Cyprus</h3>
+        <ul>
+          <li class="de-only">Reisepässe für Grenzübergang Nikosia mitführen (kein Ausweis)</li>
+          <li class="en-only" style="display:none">Passports required for Nicosia crossing (ID not sufficient)</li>
+          <li class="de-only">Mietfahrzeuge dürfen meist NICHT in den Norden – vorher prüfen</li>
+          <li class="en-only" style="display:none">Rental vehicles often NOT allowed to cross north — check first</li>
+          <li class="de-only">Eigenes Motorrad: separate Haftpflicht für den Nordteil abschließen</li>
+          <li class="en-only" style="display:none">Own motorcycle: buy separate liability insurance for the north</li>
+          <li class="de-only">Türkische Lira ist Währung im Norden, Euro wird aber akzeptiert</li>
+          <li class="en-only" style="display:none">Turkish Lira is the currency in the north; euro widely accepted</li>
+        </ul>
+      </div>
+
+      <div class="safety-card">
+        <div class="safety-card-icon">🔧</div>
+        <h3 class="de-only">Pannenhilfe &amp; Werkstatt</h3>
+        <h3 class="en-only" style="display:none">Breakdown &amp; Repairs</h3>
+        <ul>
+          <li class="de-only">Flickzeug und CO₂-Patronen immer im Gepäck</li>
+          <li class="en-only" style="display:none">Puncture kit and CO₂ cartridges always in your luggage</li>
+          <li class="de-only">Nächste Werkstatt in den Bergen oft 30–60 km entfernt</li>
+          <li class="en-only" style="display:none">Nearest workshop in the mountains often 30–60 km away</li>
+          <li class="de-only">Assistance-Nummer deiner Versicherung griffbereit haben</li>
+          <li class="en-only" style="display:none">Keep your insurer's assistance number handy</li>
+          <li class="de-only">Motorradverleih meist in Limassol, Paphos und Larnaka</li>
+          <li class="en-only" style="display:none">Motorcycle hire mainly in Limassol, Paphos and Larnaka</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- EMERGENCY NUMBERS -->
+    <div class="emergency-box fade-up">
+      <h3>🆘 <span class="de-only">Notrufnummern Zypern</span><span class="en-only" style="display:none">Emergency Numbers Cyprus</span></h3>
+      <div class="emergency-numbers">
+        <div class="emergency-number">
+          <span class="emerg-num">112</span>
+          <span class="emerg-label de-only">Europäischer Notruf</span>
+          <span class="emerg-label en-only" style="display:none">European Emergency</span>
+        </div>
+        <div class="emergency-number">
+          <span class="emerg-num">199</span>
+          <span class="emerg-label de-only">Polizei (Zypern)</span>
+          <span class="emerg-label en-only" style="display:none">Police (Cyprus)</span>
+        </div>
+        <div class="emergency-number">
+          <span class="emerg-num">112</span>
+          <span class="emerg-label de-only">Rettungsdienst</span>
+          <span class="emerg-label en-only" style="display:none">Ambulance</span>
+        </div>
+        <div class="emergency-number">
+          <span class="emerg-num">1407</span>
+          <span class="emerg-label de-only">Straßenhilfe (OELMEK)</span>
+          <span class="emerg-label en-only" style="display:none">Road Assistance (OELMEK)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center;margin-top:56px;" class="fade-up">
+      <p style="color:var(--text-mid);margin-bottom:20px;font-size:1rem;" class="de-only">
+        Bereit für dein Abenteuer? Die Routen warten auf dich.
+      </p>
+      <p style="color:var(--text-mid);margin-bottom:20px;font-size:1rem;" class="en-only" style="display:none">
+        Ready for your adventure? The routes are waiting.
+      </p>
+      <a href="routen.html" class="btn btn-primary btn-large" data-i18n="nav_routes">Routen ansehen</a>
+      &nbsp;&nbsp;
+      <a href="index.html#buy" class="btn btn-outline btn-large" data-i18n="nav_buy">Kaufen</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">🏍️ ZypernGuide</div>
+        <p class="footer-brand-desc" data-i18n="footer_desc">Der umfassendste Motorrad-Reiseführer für Zypern.</p>
+        <div class="lang-switcher" style="gap:8px;">
+          <button class="lang-btn" data-lang="de">DE</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading" data-i18n="footer_links">Links</div>
+        <ul class="footer-links">
+          <li><a class="footer-link" href="index.html" data-i18n="nav_home">Startseite</a></li>
+          <li><a class="footer-link" href="routen.html" data-i18n="nav_routes">Routen</a></li>
+          <li><a class="footer-link" href="sicherheit.html" data-i18n="nav_safety">Sicherheit</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading" data-i18n="footer_legal">Rechtliches</div>
+        <ul class="footer-links">
+          <li><a class="footer-link" href="#" data-i18n="footer_imprint">Impressum</a></li>
+          <li><a class="footer-link" href="#" data-i18n="footer_privacy">Datenschutz</a></li>
+          <li><a class="footer-link" href="#" data-i18n="footer_terms">AGB</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading" data-i18n="footer_contact">Kontakt</div>
+        <ul class="footer-links">
+          <li><a class="footer-link" href="mailto:hallo@zypernguide.de">hallo@zypernguide.de</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <span data-i18n="footer_copyright">© 2024 Zypern Motorrad Guide.</span>
+      <div class="footer-legal">
+        <a href="#" data-i18n="footer_privacy">Datenschutz</a>
+        <a href="#" data-i18n="footer_imprint">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Handle language-specific elements that use class-based approach
+  document.addEventListener('DOMContentLoaded', () => {
+    function updateLangClasses() {
+      const lang = localStorage.getItem('lang') || 'de';
+      document.body.classList.toggle('lang-de', lang === 'de');
+      document.body.classList.toggle('lang-en', lang === 'en');
+
+      // Show/hide de-only and en-only elements
+      document.querySelectorAll('.de-only').forEach(el => {
+        el.style.display = lang === 'de' ? '' : 'none';
+      });
+      document.querySelectorAll('.en-only').forEach(el => {
+        el.style.display = lang === 'en' ? '' : 'none';
+      });
+    }
+
+    updateLangClasses();
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', updateLangClasses);
+    });
+  });
+</script>
+</body>
+</html>
