@@ -51,27 +51,22 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 
 .lang-btn {
-  font-family: 'Inter', sans-serif;
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .08em;
   padding: 4px 10px;
-  border: 1.5px solid rgba(255,255,255,.35);
+  border: none;              /* removes the visible box */
   border-radius: 20px;
   background: transparent;
-  color: rgba(255,255,255,.65);
+  color: rgba(255,255,255,.55);
   cursor: pointer;
   transition: all .2s;
 }
 
 .lang-btn.active {
-  background: var(--terracotta);
-  border-color: var(--terracotta);
+  background: var(--terracotta);  /* active state keeps its pill indicator */
   color: var(--white);
 }
 
 .lang-btn:hover:not(.active) {
-  border-color: rgba(255,255,255,.7);
+  background: rgba(255,255,255,.12);  /* subtle hover, no border */
   color: var(--white);
 }
 
