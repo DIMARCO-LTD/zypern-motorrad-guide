@@ -39,21 +39,79 @@
     @media (max-width: 600px) {
       .route-expand-media { grid-template-columns: 1fr; }
     }
+
+    /* ── Safety Section ── */
+    #sicherheit { background: var(--beige); }
+    .safety-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .safety-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--terracotta);
+    }
+    .safety-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .safety-title {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .safety-desc {
+      font-size: .82rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .safety-highlight {
+      display: inline-block;
+      background: var(--terracotta);
+      color: var(--white);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 768px) {
+      .safety-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .safety-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body class="lang-de">
+
+  <!-- Language Bar -->
+  <div class="lang-bar">
+    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
 
   <!-- Navigation -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">🏍️ <span>Zypern</span>Moto</a>
   <ul class="nav-links">
     <li>
-      <a href="#routes" data-de>Routen</a>
-      <a href="#routes" data-en>Routes</a>
+      <a href="routen.html" data-de>Routen</a>
+      <a href="routen.html" data-en>Routes</a>
     </li>
     <li>
-      <a href="#sicherheit" data-de>Sicherheit</a>
-      <a href="#sicherheit" data-en>Safety</a>
+      <a href="sicherheit.html" data-de>Sicherheit</a>
+      <a href="sicherheit.html" data-en>Safety</a>
     </li>
     <li>
       <a href="#features" data-de>Warum wir</a>
@@ -67,16 +125,11 @@
       <a href="#testimonials" data-de>Bewertungen</a>
       <a href="#testimonials" data-en>Reviews</a>
     </li>
-    <li style="margin-left: 24px;">
+    <li>
       <a href="#pricing" class="nav-cta" data-de>Jetzt kaufen</a>
       <a href="#pricing" class="nav-cta" data-en>Buy Now</a>
     </li>
   </ul>
-  <!-- Language Bar inside nav, right of hamburger -->
-  <div class="lang-bar">
-    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-  </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -85,10 +138,10 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
-  <a href="#routes" onclick="closeMobileMenu()" data-de>Routen</a>
-  <a href="#routes" onclick="closeMobileMenu()" data-en>Routes</a>
-  <a href="#sicherheit" onclick="closeMobileMenu()" data-de>Sicherheit</a>
-  <a href="#sicherheit" onclick="closeMobileMenu()" data-en>Safety</a>
+  <a href="routen.html" onclick="closeMobileMenu()" data-de>Routen</a>
+  <a href="routen.html" onclick="closeMobileMenu()" data-en>Routes</a>
+  <a href="sicherheit.html" onclick="closeMobileMenu()" data-de>Sicherheit</a>
+  <a href="sicherheit.html" onclick="closeMobileMenu()" data-en>Safety</a>
   <a href="#features" onclick="closeMobileMenu()" data-de>Warum wir</a>
   <a href="#features" onclick="closeMobileMenu()" data-en>Why Us</a>
   <a href="#pricing" onclick="closeMobileMenu()" data-de>Preise</a>
@@ -186,6 +239,58 @@
         <h3 class="feature-title" data-en>Season &amp; Climate</h3>
         <p class="feature-desc" data-de>Monatsgenaue Wetterübersichten, ideale Fahrzeiten und Hinweise zu Straßensperrungen.</p>
         <p class="feature-desc" data-en>Month-by-month weather breakdowns, ideal riding windows, and seasonal road closure warnings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SICHERHEIT ══ -->
+  <section id="sicherheit">
+    <div class="section-header">
+      <div>
+        <p class="section-label" data-de>Wichtige Hinweise</p>
+        <p class="section-label" data-en>Important Notes</p>
+        <h2 class="section-title" data-de>Sicherheit auf<br>Zyperns Straßen</h2>
+        <h2 class="section-title" data-en>Safety on<br>Cyprus Roads</h2>
+      </div>
+      <p class="section-desc" data-de>Diese vier Punkte sollte jeder Motorradfahrer kennen, bevor er auf Zypern losfährt.</p>
+      <p class="section-desc" data-en>Every motorcyclist should know these four points before riding in Cyprus.</p>
+    </div>
+    <div class="safety-grid">
+      <div class="safety-card reveal">
+        <span class="safety-icon">🚗</span>
+        <div class="safety-highlight" data-de>Achtung</div>
+        <div class="safety-highlight" data-en>Warning</div>
+        <div class="safety-title" data-de>Linksverkehr</div>
+        <div class="safety-title" data-en>Left-hand Traffic</div>
+        <p class="safety-desc" data-de>Auf Zypern wird links gefahren – britisches System. Besonders an Kreuzungen und Kreisverkehren höchste Aufmerksamkeit.</p>
+        <p class="safety-desc" data-en>Cyprus drives on the left — British system. Exercise maximum care at junctions and roundabouts.</p>
+      </div>
+      <div class="safety-card reveal">
+        <span class="safety-icon">📄</span>
+        <div class="safety-highlight" data-de>Pflicht</div>
+        <div class="safety-highlight" data-en>Required</div>
+        <div class="safety-title" data-de>Führerschein</div>
+        <div class="safety-title" data-en>Licence Required</div>
+        <p class="safety-desc" data-de>Ein gültiger Motorradführerschein (Klasse A) ist Pflicht. EU-Führerscheine werden anerkannt; internationale Fahrerlaubnis empfohlen.</p>
+        <p class="safety-desc" data-en>A valid motorcycle licence (Category A) is mandatory. EU licences are accepted; an international driving permit is recommended.</p>
+      </div>
+      <div class="safety-card reveal">
+        <span class="safety-icon">⛑️</span>
+        <div class="safety-highlight" data-de>Gesetz</div>
+        <div class="safety-highlight" data-en>Law</div>
+        <div class="safety-title" data-de>Helmpflicht</div>
+        <div class="safety-title" data-en>Helmet Law</div>
+        <p class="safety-desc" data-de>Das Tragen eines Helms ist gesetzlich vorgeschrieben. ECE-zertifizierte Helme sind erforderlich – Verstöße werden mit Bußgeldern geahndet.</p>
+        <p class="safety-desc" data-en>Wearing a helmet is legally required at all times. ECE-certified helmets are mandatory — violations result in on-the-spot fines.</p>
+      </div>
+      <div class="safety-card reveal">
+        <span class="safety-icon">🆘</span>
+        <div class="safety-highlight" data-de>Notruf</div>
+        <div class="safety-highlight" data-en>Emergency</div>
+        <div class="safety-title" data-de>Notrufnummer 112</div>
+        <div class="safety-title" data-en>Emergency: 112</div>
+        <p class="safety-desc" data-de>Europäische Notrufnummer 112 gilt auch auf Zypern. Polizei: 1460 · Krankenwagen: 1410 · Pannenhilfe: 1400.</p>
+        <p class="safety-desc" data-en>European emergency number 112 works in Cyprus. Police: 1460 · Ambulance: 1410 · Breakdown: 1400.</p>
       </div>
     </div>
   </section>
@@ -495,16 +600,6 @@
       <p class="footer-about" data-de>Der führende digitale Motorradreiseführer für Zypern. Von Fahrern für Fahrer – mit Leidenschaft für die schönste Mittelmeerinsel.</p>
       <p class="footer-about" data-en>The leading digital motorcycle travel guide for Cyprus. By riders, for riders — with passion for the most beautiful Mediterranean island.</p>
       <div style="font-size:.8rem;opacity:.5;margin-top:8px">📧 info@zypernmoto.de</div>
-    </div>
-    <div>
-      <div class="footer-heading" data-de>Routen</div>
-      <div class="footer-heading" data-en>Routes</div>
-      <ul class="footer-links">
-        <li><a href="routen.html" data-de>Küstenparadies</a><a href="routen.html" data-en>Coastal Paradise</a></li>
-        <li><a href="routen.html" data-de>Troodos-Gebirgspass</a><a href="routen.html" data-en>Troodos Mountain Pass</a></li>
-        <li><a href="routen.html" data-de>Antike Kulturroute</a><a href="routen.html" data-en>Ancient Heritage Route</a></li>
-        <li><a href="#pricing" data-de>Alle 12+ Routen</a><a href="#pricing" data-en>All 12+ Routes</a></li>
-      </ul>
     </div>
     <div>
       <div class="footer-heading" data-de>Rechtliches</div>
