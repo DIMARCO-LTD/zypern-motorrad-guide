@@ -20,9 +20,9 @@
 <nav id="navbar">
   <a href="#hero" class="nav-logo">🏍️ <span>Zypern</span>Moto</a>
   <ul class="nav-links">
-        <li>
-      <a href="#routes" data-de>Routen</a>
-      <a href="#routes" data-en>Routes</a>
+    <li>
+      <a href="#routen" data-de>Routen</a>
+      <a href="#routen" data-en>Routes</a>
     </li>
     <li>
       <a href="#safety" data-de>Sicherheit</a>
@@ -53,8 +53,8 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
-    <a href="#routes" onclick="closeMobileMenu()" data-de>Routen</a>
-  <a href="#routes" onclick="closeMobileMenu()" data-en>Routes</a>
+  <a href="#routen" onclick="closeMobileMenu()" data-de>Routen</a>
+  <a href="#routen" onclick="closeMobileMenu()" data-en>Routes</a>
   <a href="#safety" onclick="closeMobileMenu()" data-de>Sicherheit</a>
   <a href="#safety" onclick="closeMobileMenu()" data-en>Safety</a>
   <a href="#features" onclick="closeMobileMenu()" data-de>Warum wir</a>
@@ -64,6 +64,7 @@
   <a href="#testimonials" onclick="closeMobileMenu()" data-de>Bewertungen</a>
   <a href="#testimonials" onclick="closeMobileMenu()" data-en>Reviews</a>
 </div>
+
   <!-- ══ HERO ══ -->
   <section id="hero">
     <div class="hero-bg"></div>
@@ -156,51 +157,6 @@
       </div>
     </div>
   </section>
-   <!-- ══ SAFETY ══ -->
-  <section id="safety">
-    <div class="section-header">
-      <div>
-        <p class="section-label" data-de>Sicherheit auf Zypern</p>
-        <p class="section-label" data-en>Safety in Cyprus</p>
-        <h2 class="section-title" data-de>Das Wichtigste<br>auf einen Blick</h2>
-        <h2 class="section-title" data-en>The essentials<br>at a glance</h2>
-      </div>
-      <p class="section-desc" data-de>Vollständige Sicherheitsinfos – Straßenregeln, Notfallnummern und Fahrtipps – sind im Guide enthalten.</p>
-      <p class="section-desc" data-en>Full safety detail — road rules, emergency numbers, and riding tips — is inside the guide.</p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-item reveal">
-        <div class="feature-icon" style="font-size:2rem">⚠️</div>
-        <h3 class="feature-title" data-de>Linksverkehr</h3>
-        <h3 class="feature-title" data-en>Left-hand Traffic</h3>
-        <p class="feature-desc" data-de>Zypern fährt links – britisches Erbe. Besonders an Kreisverkehren und nach Stopps höchste Aufmerksamkeit.</p>
-        <p class="feature-desc" data-en>Cyprus drives on the left — British legacy. Extra vigilance at roundabouts and after every stop.</p>
-      </div>
-      <div class="feature-item reveal">
-        <div class="feature-icon" style="font-size:2rem">📄</div>
-        <h3 class="feature-title" data-de>Führerschein &amp; Papiere</h3>
-        <h3 class="feature-title" data-en>Licence &amp; Documents</h3>
-        <p class="feature-desc" data-de>EU-Führerschein wird anerkannt. Zulassung, Versicherungsnachweis und Reisepass stets mitführen.</p>
-        <p class="feature-desc" data-en>EU licence accepted. Always carry registration, proof of insurance, and your passport.</p>
-      </div>
-      <div class="feature-item reveal">
-        <div class="feature-icon" style="font-size:2rem">🪖</div>
-        <h3 class="feature-title" data-de>Helm Pflicht</h3>
-        <h3 class="feature-title" data-en>Helmet Required</h3>
-        <p class="feature-desc" data-de>Helmpflicht für Fahrer und Sozius. ECE-zertifizierter Helm empfohlen – Bußgelder sind hoch.</p>
-        <p class="feature-desc" data-en>Mandatory for rider and pillion. ECE-certified helmet strongly recommended — fines are steep.</p>
-      </div>
-      <div class="feature-item reveal">
-        <div class="feature-icon" style="font-size:2rem">🚑</div>
-        <h3 class="feature-title" data-de>Notruf: 112</h3>
-        <h3 class="feature-title" data-en>Emergency: 112</h3>
-        <p class="feature-desc" data-de>Europaweite Notrufnummer. Polizei: 1460 · Krankenwagen: 1480. Nummern im Guide vollständig aufgeführt.</p>
-        <p class="feature-desc" data-en>EU-wide emergency number. Police: 1460 · Ambulance: 1480. Full list of numbers in the guide.</p>
-      </div>
-    </div>
-  </section>
-
 
   <!-- ══ ROUTES ══ -->
   <section id="routes">
@@ -311,7 +267,8 @@
 
     </div>
   </section>
-    <!-- ══ ROUTEN DETAIL ══ -->
+
+  <!-- ══ ROUTEN DETAIL ══ -->
   <section id="routen">
     <div class="section-header">
       <div>
@@ -466,7 +423,7 @@
 
     </div>
   </section>
-   
+
   <!-- ══ PRICING ══ -->
   <section id="pricing">
     <div class="section-header" style="max-width:1000px">
@@ -624,7 +581,7 @@
     <div>
       <div class="footer-heading" data-de>Routen</div>
       <div class="footer-heading" data-en>Routes</div>
-           <ul class="footer-links">
+      <ul class="footer-links">
         <li><a href="#routen" data-de>Küstenparadies</a><a href="#routen" data-en>Coastal Paradise</a></li>
         <li><a href="#routen" data-de>Troodos-Gebirgspass</a><a href="#routen" data-en>Troodos Mountain Pass</a></li>
         <li><a href="#routen" data-de>Antike Kulturroute</a><a href="#routen" data-en>Ancient Heritage Route</a></li>
@@ -695,6 +652,20 @@
         observer.observe(el);
       });
     })();
+
+    // ── Route accordion ──
+    function toggleAcc(id) {
+      var card = document.getElementById(id);
+      var isOpen = card.classList.contains('acc-open');
+      document.querySelectorAll('.acc-card').forEach(function (c) {
+        c.classList.remove('acc-open');
+        c.querySelector('.acc-header').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        card.classList.add('acc-open');
+        card.querySelector('.acc-header').setAttribute('aria-expanded', 'true');
+      }
+    }
 
     // ── Init lang ──
     setLang('de');
