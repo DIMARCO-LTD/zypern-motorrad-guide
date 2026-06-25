@@ -43,41 +43,40 @@
 </head>
 <body class="lang-de">
 
-  <!-- Language Bar -->
-  <div class="lang-bar">
-    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-  </div>
-
   <!-- Navigation -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">🏍️ <span>Zypern</span>Moto</a>
   <ul class="nav-links">
     <li>
-      <a href="#routen" data-de>Routen</a>
-      <a href="#routen" data-en>Routes</a>
+      <a href="#routes" data-de>Routen</a>
+      <a href="#routes" data-en>Routes</a>
     </li>
     <li>
       <a href="#sicherheit" data-de>Sicherheit</a>
       <a href="#sicherheit" data-en>Safety</a>
     </li>
     <li>
-      <a href="#warum" data-de>Warum wir</a>
-      <a href="#warum" data-en>Why Us</a>
+      <a href="#features" data-de>Warum wir</a>
+      <a href="#features" data-en>Why Us</a>
     </li>
     <li>
-      <a href="#preise" data-de>Preise</a>
-      <a href="#preise" data-en>Pricing</a>
+      <a href="#pricing" data-de>Preise</a>
+      <a href="#pricing" data-en>Pricing</a>
     </li>
     <li>
-      <a href="#bewertungen" data-de>Bewertungen</a>
-      <a href="#bewertungen" data-en>Reviews</a>
+      <a href="#testimonials" data-de>Bewertungen</a>
+      <a href="#testimonials" data-en>Reviews</a>
     </li>
-    <li style="margin-left: 16px;">
-      <a href="#preise" class="nav-cta" data-de>Jetzt kaufen</a>
-      <a href="#preise" class="nav-cta" data-en>Buy Now</a>
+    <li style="margin-left: 24px;">
+      <a href="#pricing" class="nav-cta" data-de>Jetzt kaufen</a>
+      <a href="#pricing" class="nav-cta" data-en>Buy Now</a>
     </li>
   </ul>
+  <!-- Language Bar inside nav, right of hamburger -->
+  <div class="lang-bar">
+    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -86,16 +85,16 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
-  <a href="#routen" onclick="closeMobileMenu()" data-de>Routen</a>
-  <a href="#routen" onclick="closeMobileMenu()" data-en>Routes</a>
+  <a href="#routes" onclick="closeMobileMenu()" data-de>Routen</a>
+  <a href="#routes" onclick="closeMobileMenu()" data-en>Routes</a>
   <a href="#sicherheit" onclick="closeMobileMenu()" data-de>Sicherheit</a>
   <a href="#sicherheit" onclick="closeMobileMenu()" data-en>Safety</a>
-  <a href="#warum" onclick="closeMobileMenu()" data-de>Warum wir</a>
-  <a href="#warum" onclick="closeMobileMenu()" data-en>Why Us</a>
-  <a href="#preise" onclick="closeMobileMenu()" data-de>Preise</a>
-  <a href="#preise" onclick="closeMobileMenu()" data-en>Pricing</a>
-  <a href="#bewertungen" onclick="closeMobileMenu()" data-de>Bewertungen</a>
-  <a href="#bewertungen" onclick="closeMobileMenu()" data-en>Reviews</a>
+  <a href="#features" onclick="closeMobileMenu()" data-de>Warum wir</a>
+  <a href="#features" onclick="closeMobileMenu()" data-en>Why Us</a>
+  <a href="#pricing" onclick="closeMobileMenu()" data-de>Preise</a>
+  <a href="#pricing" onclick="closeMobileMenu()" data-en>Pricing</a>
+  <a href="#testimonials" onclick="closeMobileMenu()" data-de>Bewertungen</a>
+  <a href="#testimonials" onclick="closeMobileMenu()" data-en>Reviews</a>
 </div>
 
   <!-- ══ HERO ══ -->
@@ -112,8 +111,8 @@
       <p class="hero-subtitle" data-en>The complete digital travel guide for motorcyclists — featuring the most scenic coastal roads, mountain passes, and heritage routes on this Mediterranean island.</p>
 
       <div class="hero-actions">
-        <a href="#preise" class="btn-primary" data-de>Guide kaufen — ab €49</a>
-        <a href="#preise" class="btn-primary" data-en>Get the Guide — from €49</a>
+        <a href="#pricing" class="btn-primary" data-de>Guide kaufen — ab €49</a>
+        <a href="#pricing" class="btn-primary" data-en>Get the Guide — from €49</a>
         <a href="#routes" class="btn-outline" data-de>Routen entdecken</a>
         <a href="#routes" class="btn-outline" data-en>Explore Routes</a>
       </div>
@@ -498,12 +497,23 @@
       <div style="font-size:.8rem;opacity:.5;margin-top:8px">📧 info@zypernmoto.de</div>
     </div>
     <div>
-      <div class="footer-heading">Rechtliches</div>
+      <div class="footer-heading" data-de>Routen</div>
+      <div class="footer-heading" data-en>Routes</div>
       <ul class="footer-links">
-        <li><a href="impressum.html">Impressum</a></li>
-        <li><a href="datenschutz.html">Datenschutz</a></li>
-        <li><a href="agb.html">AGB</a></li>
-        <li><a href="widerruf.html">Widerruf</a></li>
+        <li><a href="routen.html" data-de>Küstenparadies</a><a href="routen.html" data-en>Coastal Paradise</a></li>
+        <li><a href="routen.html" data-de>Troodos-Gebirgspass</a><a href="routen.html" data-en>Troodos Mountain Pass</a></li>
+        <li><a href="routen.html" data-de>Antike Kulturroute</a><a href="routen.html" data-en>Ancient Heritage Route</a></li>
+        <li><a href="#pricing" data-de>Alle 12+ Routen</a><a href="#pricing" data-en>All 12+ Routes</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading" data-de>Rechtliches</div>
+      <div class="footer-heading" data-en>Legal</div>
+      <ul class="footer-links">
+        <li><a href="impressum.html" data-de>Impressum</a><a href="impressum.html" data-en>Imprint</a></li>
+        <li><a href="datenschutz.html" data-de>Datenschutz</a><a href="datenschutz.html" data-en>Privacy Policy</a></li>
+        <li><a href="agb.html" data-de>AGB</a><a href="agb.html" data-en>Terms &amp; Conditions</a></li>
+        <li><a href="widerruf.html" data-de>Widerruf</a><a href="widerruf.html" data-en>Cancellation Policy</a></li>
       </ul>
     </div>
   </div>
