@@ -112,21 +112,22 @@ nav.scrolled {
   list-style: none;
 }
 
-.nav-links a {
-  color: rgba(255,255,255,.85);
-  text-decoration: none;
-  font-size: .875rem;
-  font-weight: 500;
-  transition: color .2s;
+/* AFTER */
+.nav-links {
+  display: flex;
+  align-items: center;   /* vertically centres the CTA pill with the text links */
+  gap: clamp(12px, 2vw, 32px);  /* shrinks gracefully when zoomed out */
+  list-style: none;
+  flex-wrap: nowrap;     /* prevents accidental wrapping mid-nav */
 }
-
-.nav-links a:hover { color: var(--beige); }
 
 .nav-cta {
   background: var(--terracotta) !important;
   color: var(--white) !important;
   padding: 8px 20px;
   border-radius: 25px;
+  white-space: nowrap;   /* keeps "Jetzt kaufen" from breaking across lines */
+  line-height: 1;        /* normalises height so flex alignment is predictable */
 }
 
 .nav-cta:hover { background: var(--terracotta-dark) !important; }
