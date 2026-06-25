@@ -39,89 +39,15 @@
     @media (max-width: 600px) {
       .route-expand-media { grid-template-columns: 1fr; }
     }
-
-    /* ── Language Dropdown ── */
-    .lang-dropdown {
-      position: relative;
-      margin-left: 16px;
-    }
-    .lang-dropdown-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.3);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: .82rem;
-      font-weight: 600;
-      letter-spacing: .04em;
-      padding: 6px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background .2s, border-color .2s;
-      white-space: nowrap;
-    }
-    .lang-dropdown-btn:hover {
-      background: rgba(255,255,255,.22);
-      border-color: rgba(255,255,255,.55);
-    }
-    .lang-dropdown-btn .lang-arrow {
-      font-size: .6rem;
-      opacity: .7;
-      transition: transform .2s;
-    }
-    .lang-dropdown.open .lang-arrow {
-      transform: rotate(180deg);
-    }
-    .lang-dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      min-width: 170px;
-      overflow: hidden;
-      z-index: 2000;
-    }
-    .lang-dropdown.open .lang-dropdown-menu {
-      display: block;
-    }
-    .lang-dropdown-menu button {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      padding: 11px 16px;
-      background: none;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      font-size: .88rem;
-      color: var(--text-dark);
-      cursor: pointer;
-      text-align: left;
-      transition: background .15s;
-    }
-    .lang-dropdown-menu button:hover {
-      background: var(--beige-light);
-    }
-    .lang-dropdown-menu button.active {
-      background: var(--beige);
-      font-weight: 600;
-      color: var(--blue);
-    }
-    .lang-dropdown-menu button .lang-soon {
-      margin-left: auto;
-      font-size: .68rem;
-      color: var(--text-mid);
-      opacity: .6;
-      font-style: italic;
-    }
   </style>
 </head>
 <body class="lang-de">
+
+  <!-- Language Bar -->
+  <div class="lang-bar">
+    <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
 
   <!-- Navigation -->
 <nav id="navbar">
@@ -132,8 +58,8 @@
       <a href="routen.html" data-en>Routes</a>
     </li>
     <li>
-      <a href="sicherheit.html" data-de>Sicherheit</a>
-      <a href="sicherheit.html" data-en>Safety</a>
+      <a href="#sicherheit" data-de>Sicherheit</a>
+      <a href="#sicherheit" data-en>Safety</a>
     </li>
     <li>
       <a href="#features" data-de>Warum wir</a>
@@ -151,22 +77,6 @@
       <a href="#pricing" class="nav-cta" data-de>Jetzt kaufen</a>
       <a href="#pricing" class="nav-cta" data-en>Buy Now</a>
     </li>
-    <li>
-      <div class="lang-dropdown" id="langDropdown">
-        <button class="lang-dropdown-btn" id="langDropdownBtn" aria-haspopup="true" aria-expanded="false">
-          <span id="langFlag">🇩🇪</span>
-          <span id="langCode">DE</span>
-          <span class="lang-arrow">▾</span>
-        </button>
-        <div class="lang-dropdown-menu" role="menu">
-          <button onclick="selectLang('de','🇩🇪','DE')" class="active" id="lang-opt-de">🇩🇪 Deutsch</button>
-          <button onclick="selectLang('en','🇬🇧','EN')" id="lang-opt-en">🇬🇧 English</button>
-          <button onclick="showComingSoon('el')" id="lang-opt-el">🇬🇷 Ελληνικά <span class="lang-soon">soon</span></button>
-          <button onclick="showComingSoon('es')" id="lang-opt-es">🇪🇸 Español <span class="lang-soon">soon</span></button>
-          <button onclick="showComingSoon('it')" id="lang-opt-it">🇮🇹 Italiano <span class="lang-soon">soon</span></button>
-        </div>
-      </div>
-    </li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -178,8 +88,8 @@
   <button class="mobile-close" id="mobileClose">✕</button>
   <a href="routen.html" onclick="closeMobileMenu()" data-de>Routen</a>
   <a href="routen.html" onclick="closeMobileMenu()" data-en>Routes</a>
-  <a href="sicherheit.html" onclick="closeMobileMenu()" data-de>Sicherheit</a>
-  <a href="sicherheit.html" onclick="closeMobileMenu()" data-en>Safety</a>
+  <a href="#sicherheit" onclick="closeMobileMenu()" data-de>Sicherheit</a>
+  <a href="#sicherheit" onclick="closeMobileMenu()" data-en>Safety</a>
   <a href="#features" onclick="closeMobileMenu()" data-de>Warum wir</a>
   <a href="#features" onclick="closeMobileMenu()" data-en>Why Us</a>
   <a href="#pricing" onclick="closeMobileMenu()" data-de>Preise</a>
@@ -433,6 +343,58 @@
     </div>
   </section>
 
+  <!-- ══ SICHERHEIT ══ -->
+  <section id="sicherheit" style="background:var(--beige,#f5f0e8);padding:80px 24px;">
+    <div style="max-width:860px;margin:0 auto;">
+      <p style="text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:600;color:var(--terracotta,#c0522a);margin-bottom:8px;" data-de>Wichtige Hinweise</p>
+      <p style="text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:600;color:var(--terracotta,#c0522a);margin-bottom:8px;" data-en>Important Notes</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:40px;line-height:1.2;" data-de>Sicherheit auf<br>Zyperns Straßen</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:40px;line-height:1.2;" data-en>Safety on<br>Cyprus Roads</h2>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px;">
+        <li style="display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <span style="font-size:1.5rem;flex-shrink:0;">⚠️</span>
+          <div>
+            <strong data-de>Linksverkehr</strong><strong data-en>Drive on the Left</strong>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-de>Fahre immer links, auch auf leeren Straßen – besonders nach Pausen oder an Kreuzungen.</p>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-en>Always keep left, even on empty roads — especially after breaks or at junctions.</p>
+          </div>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <span style="font-size:1.5rem;flex-shrink:0;">🔄</span>
+          <div>
+            <strong data-de>Kurvenfahren</strong><strong data-en>Cornering</strong>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-de>Besondere Vorsicht bei unbekannten Kurven – Straßenbelag und Kurvenradien weichen oft von europäischen Standards ab.</p>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-en>Take extra care on unfamiliar bends — road surfaces and corner radii often differ from European standards.</p>
+          </div>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <span style="font-size:1.5rem;flex-shrink:0;">🪖</span>
+          <div>
+            <strong data-de>Helm</strong><strong data-en>Helmet</strong>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-de>Helmtragepflicht auf Zypern – keine Ausnahmen. Bußgelder werden konsequent durchgesetzt.</p>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-en>Helmets are compulsory in Cyprus — no exceptions. Fines are strictly enforced.</p>
+          </div>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <span style="font-size:1.5rem;flex-shrink:0;">📋</span>
+          <div>
+            <strong data-de>Führerschein</strong><strong data-en>Licence</strong>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-de>EU-Führerschein wird anerkannt. Immer Führerschein, Fahrzeugpapiere und Versicherungsnachweis mitführen.</p>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-en>EU licences are recognised. Always carry your licence, registration documents, and proof of insurance.</p>
+          </div>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:16px;background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <span style="font-size:1.5rem;flex-shrink:0;">🆘</span>
+          <div>
+            <strong data-de>Notruf</strong><strong data-en>Emergency</strong>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-de>112 ist europaweit gültig und funktioniert auch auf Zypern für Polizei, Feuerwehr und Rettungsdienst.</p>
+            <p style="margin:4px 0 0;font-size:.92rem;color:#555;" data-en>112 is the pan-European emergency number and works in Cyprus for police, fire, and ambulance services.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ══ PRICING ══ -->
   <section id="pricing">
     <div class="section-header" style="max-width:1000px">
@@ -619,48 +581,10 @@
     function setLang(lang) {
       document.body.classList.remove('lang-de', 'lang-en');
       document.body.classList.add('lang-' + lang);
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.documentElement.lang = lang;
     }
-
-    function selectLang(lang, flag, code) {
-      setLang(lang);
-      document.getElementById('langFlag').textContent = flag;
-      document.getElementById('langCode').textContent = code;
-      document.querySelectorAll('.lang-dropdown-menu button').forEach(function(btn) {
-        btn.classList.remove('active');
-      });
-      var opt = document.getElementById('lang-opt-' + lang);
-      if (opt) opt.classList.add('active');
-      closeLangDropdown();
-    }
-
-    function showComingSoon(lang) {
-      var messages = { el: 'Ελληνικά — coming soon!', es: 'Español — coming soon!', it: 'Italiano — coming soon!' };
-      alert(messages[lang] || 'Coming soon!');
-      closeLangDropdown();
-    }
-
-    // ── Language Dropdown ──
-    var langDropdown = document.getElementById('langDropdown');
-    var langDropdownBtn = document.getElementById('langDropdownBtn');
-
-    langDropdownBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = langDropdown.classList.contains('open');
-      langDropdown.classList.toggle('open');
-      langDropdownBtn.setAttribute('aria-expanded', !isOpen);
-    });
-
-    function closeLangDropdown() {
-      langDropdown.classList.remove('open');
-      langDropdownBtn.setAttribute('aria-expanded', 'false');
-    }
-
-    document.addEventListener('click', function(e) {
-      if (!langDropdown.contains(e.target)) {
-        closeLangDropdown();
-      }
-    });
 
     // ── Navbar scroll ──
     var navbar = document.getElementById('navbar');
@@ -712,7 +636,7 @@
     }
 
     // ── Init lang ──
-    selectLang('de', '🇩🇪', 'DE');
+    setLang('de');
   </script>
 </body>
 </html>
